@@ -1,0 +1,3 @@
+xmltodict
+suds-py3
+requests

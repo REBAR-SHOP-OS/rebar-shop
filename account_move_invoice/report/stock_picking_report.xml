@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_stock_picking_document" inherit_id="stock.report_picking">
+        <xpath expr="//span[@t-field='ml.product_id.display_name']" position="attributes">
+            <attribute name="t-field">ml.move_id.sale_line_id.name</attribute>
+        </xpath>
+    </template>
+
+</odoo>

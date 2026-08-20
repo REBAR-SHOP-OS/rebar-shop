@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="contact_export_action" model="ir.actions.server">
+        <field name="name">Export to QuickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_res_partner" />
+        <field name="binding_model_id" ref="model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">records.export_contacts()</field>
+    </record>
+    <record id="item_export_action" model="ir.actions.server">
+        <field name="name">Export to QuickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_product_template" />
+        <field name="binding_model_id" ref="model_product_template" />
+        <field name="state">code</field>
+        <field name="code">records.export_items()</field>
+    </record>
+    <record id="sale_order_action" model="ir.actions.server">
+        <field name="name">Export to QuickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_sale_order" />
+        <field name="binding_model_id" ref="model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">records.export_sale_order()</field>
+    </record>
+    <record id="purchase_order_action" model="ir.actions.server">
+        <field name="name">Export to QuickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_purchase_order" />
+        <field name="binding_model_id" ref="model_purchase_order" />
+        <field name="state">code</field>
+        <field name="code">records.export_purchase_order()</field>
+    </record>
+    <record id="invoice_export_action" model="ir.actions.server">
+        <field name="name">Export to QuickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_move" />
+        <field name="binding_model_id" ref="model_account_move" />
+        <field name="state">code</field>
+        <field name="code">records.export_invoice()</field>
+    </record>
+    <record id="invoice_reconcile_action" model="ir.actions.server">
+        <field name="name">Reconcile Invoices</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_move" />
+        <field name="binding_model_id" ref="model_account_move" />
+        <field name="state">code</field>
+        <field name="code">records.reconcile()</field>
+    </record>
+    <record id="payment_export_action" model="ir.actions.server">
+        <field name="name">Export To quickBook</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_payment" />
+        <field name="binding_model_id" ref="model_account_payment" />
+        <field name="state">code</field>
+        <field name="code">records.export_payment()</field>
+    </record>
+    <record id="payment_reconcile_action" model="ir.actions.server">
+        <field name="name">Reconcile</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_payment" />
+        <field name="binding_model_id" ref="model_account_payment" />
+        <field name="state">code</field>
+        <field name="code">records.reconcile_payment()</field>
+    </record>
+    <record model="ir.ui.view" id="quickbook_setting">
+        <field name="name">res.config.settings.quickbook_setting</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="QuickBooks" string="QuickBooks" name="quickbook_settings" logo="/OdooQuickBookConnector/static/description/icon.png">
+                    <block title="QuickBooks Settings" name="qb_credentials_setting_container">
+                        <!--                        <setting>-->
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                        <div class="text-muted">
+                            Please enter your Quickbooks credentials:
+                        </div>
+                        <setting>
+                            <div>
+                                <span class="o_form_label">Redirect URI</span>
+                            </div>
+                            <div>
+                                <field name="quickbook_redirect_url" position="attributes">
+                                    <attribute name="required">True</attribute>
+                                </field>
+                            </div>
+                            <div>
+                                <span class="o_form_label">Select URL</span>
+                            </div>
+                            <div>
+                                <field name="select_url" position="attributes">
+                                    <attribute name="required">True</attribute>
+                                </field>
+                            </div>
+                        </setting>
+                        <setting>
+                            <div>
+                                <span class="o_form_label">Client ID</span>
+                            </div>
+                            <div>
+                                <field name="quickbook_client_id" position="attributes" password="True">
+                                    <attribute name="required">True</attribute>
+                                </field>
+                            </div>
+
+                            <div>
+                                <span class="o_form_label">Client Secret</span>
+                            </div>
+                            <div>
+                                <field name="quickbook_secret_key" position="attributes" password="True">
+                                    <attribute name="required">True</attribute>
+                                </field>
+                            </div>
+                        </setting>
+                        <div class="col-lg-6 col-6 mt-16">
+                            <button name="authorization" string="Build Connection" type="object" class="oe_highlight"/>
+                        </div>
+                        <!--                        </setting>-->
+                    </block>
+                    <block title="QuickBooks Import Settings" name="qb_import_setting_container">
+                        <div class="text-muted">
+                            <p>Check each import individually to ensure the information is correct.</p>
+                            <p>Uncheck the import once you've verified the details.</p>
+                            <p>Move on to the next import and repeat the process.</p>
+                        </div>
+                        <setting>
+                            <div class="row mt16">
+                                <div class="col-6 ">
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='customer_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Customers</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Customers which are not present in odoo will be created in Odoo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='vendor_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Vendors</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Vendors which are not present in odoo will be created in Odoo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='item_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Items</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Items which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='sale_order_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Sales Order</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those 'Sales Receipts' of quickbooks which are not created will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='purchase_order_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Purchase Order</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all purchase order of quickbooks which are not created will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 ">
+                                    <div class="col-12 o_setting_box">
+                                        <div class="o_setting_left_pane">
+                                            <field name='invoice_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Invoices</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Invoices which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='bill_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Bills</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Bills which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='credit_memo_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Credit Notes</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Credit Notes which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <div class="o_setting_left_pane">
+                                            <field name='vendor_refund_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Vendors Refunds</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Vendors Refunds which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 " invisible="0">
+                                        <div class="o_setting_left_pane">
+                                            <field name='customer_payment_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Customer Payments</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Customer Payments which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 " invisible="1">
+                                        <div class="o_setting_left_pane">
+                                            <field name='vendor_bill_payment' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Import Vendor Payments</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all those Vendor Payments which are not created in odoo will be imported.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 " >
+                                        <div class="o_setting_left_pane">
+                                            <field name='reconcile_check' widget="boolean_toggle"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Reconcile</span>
+                                            <div class="text-muted">
+                                                If this check/turn on then all payments and invoices will be linked.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <div class="col-12 ">
+                            <div class="o_setting_left_pane">
+                                <!--<field name='date_filter' widget="boolean_toggle"/>-->
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Import Data</span>
+                                <div class="text-muted">
+                                    Click to start import.
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <group>
+                                            <!--<field name="from_date" position="attributes"></field>-->
+                                            <!--<field name="to_date" position="attributes"></field>-->
+                                            <button name="import_data" string="Start Import" type="object" class="oe_highlight"/>
+                                        </group>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--                    <block>-->
+                    <!--                        <setting>-->
+                    <!--                            <h2> Webhook Configuration</h2>-->
+                    <!--                            <div class="row mt16 o_settings_container">-->
+                    <!--                                <div class="col-12 o_setting_box">-->
+                    <!--                                    <div class="o_setting_left_pane">-->
+                    <!--                                        <field name='webhook_check' widget="boolean_toggle"/>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="o_setting_right_pane">-->
+                    <!--                                        <span class="o_form_label">Get data from Webhook</span>-->
+                    <!--                                        <div class="text-muted">-->
+                    <!--                                            Here you can specify whether you want instant sync of Contacts and Invoices.-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="content-group">-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </setting>-->
+                    <!--                    </block>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

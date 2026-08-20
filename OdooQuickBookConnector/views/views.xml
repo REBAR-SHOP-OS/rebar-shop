@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="configure_chart_of_account_list_qb" model="ir.ui.view">
+        <field name="name">account.account.form</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list" />
+        <field name="arch" type="xml">
+            <xpath expr = "//field[@ name='name']" position = "after">
+                <field name = "coa_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="configure_quickbooks_taxes" model="ir.ui.view">
+        <field name="name">account.tax.form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <xpath expr = "//field[@name='name']" position = "after">
+                <field name = "tax_id"/>
+            </xpath>
+<!--            <xpath expr="//form//sheet//notebook/page[@name='advanced_options']" position="after"></xpath>-->
+        </field>
+    </record>
+    <record model="ir.ui.view" id="quickbooks_settings_form_view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//notebook" position="inside">
+                <page string="Quickbooks Settings" name="quickbooks_settings">
+                    <group>
+                        <group>
+                            <field name="access_token"/>
+                            <field name="refresh_token" invisible="1"/>
+                            <field name="quickbook_realm_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="expires_in" invisible="1"/>
+                            <field name="select_url" string="URL" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<templates>
+    <t t-name="ringcentral.ListView.Buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary" owl="1">
+        <xpath expr="//div[hasclass('o_list_buttons')]" position="inside">
+            <!-- Buttons for RingCentral actions: visible only to RingCentral users -->
+            <t t-if="isRingCentralUser">
+                <!-- Show Login button when RingCentral is not active -->
+                <t t-if="!state.active">
+                    <button type="button" class="btn btn-primary o_button_login" t-on-click="onClickLogin">
+                        Login
+                    </button>
+                </t>
+                <!-- Show Sync and Fetch buttons when RingCentral is active (logged in) -->
+                <t t-if="state.active">
+                    <button type="button" class="btn btn-secondary o_button_sync" t-on-click="onClickSyncPhonecall">
+                        Sync RingCentral
+                    </button>
+                    <button type="button" class="btn btn-secondary o_button_fetch_agent" t-on-click="onClickFetchAgents">
+                        Fetch Agents
+                    </button>
+                </t>
+            </t>
+        </xpath>
+    </t>
+</templates>

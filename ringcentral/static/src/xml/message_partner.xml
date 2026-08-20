@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="ringcentral.messages_partner">
+        <h3 class="mt16">All Messages</h3>
+        <ul class="list-group list_overflow mt-3" id="chatboxmessage">
+            <t t-if="this.props.all_messages">
+                <t t-foreach="this.props.all_messages" t-as="message_phone_number" t-key="message_phone_number['id']">
+                    <li
+                        t-if="message_phone_number['phoneNumber']"
+                        class="list-group-item"
+                        t-on-click="(e) => this.props.openChatBox(message_phone_number['name'],message_phone_number['phoneNumber'])"
+                        style="width: 100%;text-align:end;">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>
+                                    <i class="fa fa-comments" />
+                                </span>
+                            </div>
+                            <div class="col-md-10">
+                                <span>
+                                    <t t-esc="message_phone_number['name']" />
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </t>
+            </t>
+        </ul>
+    </t>
+</templates>

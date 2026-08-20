@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Product Categories -->
+        <record id="category_steel_rebar" model="product.category">
+            <field name="name">Steel Rebar</field>
+            <field name="category_type">steel</field>
+            <field name="requires_certification" eval="True"/>
+            <field name="safety_level">medium</field>
+        </record>
+        
+        <record id="category_concrete_accessories" model="product.category">
+            <field name="name">Concrete Accessories</field>
+            <field name="category_type">concrete</field>
+            <field name="requires_certification" eval="False"/>
+            <field name="safety_level">low</field>
+        </record>
+        
+        <record id="category_construction_tools" model="product.category">
+            <field name="name">Construction Tools</field>
+            <field name="category_type">tools</field>
+            <field name="requires_certification" eval="False"/>
+            <field name="safety_level">medium</field>
+        </record>
+        
+        <!-- Sample Products -->
+        <record id="product_rebar_10mm" model="product.product">
+            <field name="name">Steel Rebar 10mm Grade 60</field>
+            <field name="categ_id" ref="category_steel_rebar"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">25.50</field>
+            <field name="standard_price">20.00</field>
+            <field name="steel_grade">grade_60</field>
+            <field name="diameter">10.0</field>
+            <field name="length">12.0</field>
+            <field name="weight_per_meter">0.617</field>
+            <field name="surface_type">deformed</field>
+            <field name="coating">none</field>
+            <field name="tensile_strength">620</field>
+            <field name="yield_strength">420</field>
+            <field name="certification">ASTM A615/A615M Grade 60</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="description_sale">High-quality deformed steel rebar, Grade 60, 10mm diameter. Suitable for reinforced concrete construction.</field>
+        </record>
+        
+        <record id="product_rebar_12mm" model="product.product">
+            <field name="name">Steel Rebar 12mm Grade 60</field>
+            <field name="categ_id" ref="category_steel_rebar"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">35.75</field>
+            <field name="standard_price">28.00</field>
+            <field name="steel_grade">grade_60</field>
+            <field name="diameter">12.0</field>
+            <field name="length">12.0</field>
+            <field name="weight_per_meter">0.888</field>
+            <field name="surface_type">deformed</field>
+            <field name="coating">none</field>
+            <field name="tensile_strength">620</field>
+            <field name="yield_strength">420</field>
+            <field name="certification">ASTM A615/A615M Grade 60</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="description_sale">Premium deformed steel rebar, Grade 60, 12mm diameter. Ideal for structural applications.</field>
+        </record>
+        
+        <record id="product_rebar_16mm" model="product.product">
+            <field name="name">Steel Rebar 16mm Grade 60</field>
+            <field name="categ_id" ref="category_steel_rebar"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">58.90</field>
+            <field name="standard_price">45.00</field>
+            <field name="steel_grade">grade_60</field>
+            <field name="diameter">16.0</field>
+            <field name="length">12.0</field>
+            <field name="weight_per_meter">1.578</field>
+            <field name="surface_type">deformed</field>
+            <field name="coating">none</field>
+            <field name="tensile_strength">620</field>
+            <field name="yield_strength">420</field>
+            <field name="certification">ASTM A615/A615M Grade 60</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="description_sale">Heavy-duty deformed steel rebar, Grade 60, 16mm diameter. Perfect for heavy construction projects.</field>
+        </record>
+        
+        <record id="product_epoxy_rebar_12mm" model="product.product">
+            <field name="name">Epoxy Coated Rebar 12mm Grade 60</field>
+            <field name="categ_id" ref="category_steel_rebar"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">45.25</field>
+            <field name="standard_price">35.00</field>
+            <field name="steel_grade">grade_60</field>
+            <field name="diameter">12.0</field>
+            <field name="length">12.0</field>
+            <field name="weight_per_meter">0.888</field>
+            <field name="surface_type">deformed</field>
+            <field name="coating">epoxy</field>
+            <field name="tensile_strength">620</field>
+            <field name="yield_strength">420</field>
+            <field name="certification">ASTM A615/A615M Grade 60, ASTM A775</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="description_sale">Corrosion-resistant epoxy coated steel rebar, Grade 60, 12mm diameter. Ideal for marine and harsh environments.</field>
+        </record>
+        
+        <record id="product_rebar_cutter" model="product.product">
+            <field name="name">Professional Rebar Cutter 32mm</field>
+            <field name="categ_id" ref="category_construction_tools"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">185.00</field>
+            <field name="standard_price">140.00</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="safety_notes">Always wear safety glasses and gloves when operating. Ensure proper training before use.</field>
+            <field name="description_sale">Heavy-duty rebar cutter capable of cutting up to 32mm diameter rebar. Professional grade tool for construction sites.</field>
+        </record>
+        
+        <record id="product_tie_wire" model="product.product">
+            <field name="name">Rebar Tie Wire 16 Gauge</field>
+            <field name="categ_id" ref="category_concrete_accessories"/>
+            <field name="type">product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="True"/>
+            <field name="list_price">12.50</field>
+            <field name="standard_price">8.00</field>
+            <field name="is_hazardous" eval="False"/>
+            <field name="description_sale">Galvanized tie wire for securing rebar in place. 16 gauge, 3.5 lb coil.</field>
+        </record>
+        
+    </data>
+</odoo>

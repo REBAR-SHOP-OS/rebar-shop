@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Portal -->
+    <template id="portal_my_home_menu_lead" name="Portal layout : lead menu vendor" inherit_id="portal.portal_breadcrumbs" priority="15">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'vendor_leads' or vendor_leads" t-attf-class="breadcrumb-item #{'active ' if not vendor_leads else ''}">
+                <a t-if="opportunity" t-attf-href="/vendor/leads?{{ keep_query() }}">
+                    Leads
+                </a>
+                <t t-else="">
+                    Leads
+                </t>
+            </li>
+            <li t-if="opportunity" class="breadcrumb-item active">
+                <span t-field="opportunity.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_vendor_lead" name="Show Vendor Leads" inherit_id="portal.portal_my_home" priority="15">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_vendor_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_vendor_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal_vendor_leads/static/src/img/your_lead_icon.png'"/>
+                <t t-set="text">Follow your leads</t>
+                <t t-set="title">Your Leads</t>
+                <t t-set="url" t-value="'/vendor/leads'"/>
+                <t t-set="placeholder_count" t-value="'vendor_lead_count'"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_my_vendor_leads_card" name="My Lead Details">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <h4 class="mb-2 mb-md-0">
+                            Lead - 
+                            <span t-field="opportunity.name"/>
+                        </h4>
+                    </div>
+                </t>
+
+                <t t-set="card_body">
+                    <div class="row">
+                        <div class="col-lg-5 mb-4 mb-lg-0">
+                            <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
+                                <button type="button" data-bs-toggle="modal" data-bs-target=".modal_edit_opp" class="btn btn-link btn-sm"><i class="fa fa-pencil me-1"/>Edit</button>
+                            </div>
+                            <div class="row mb-2">
+                                <strong class="col-12 col-sm-4">Expected Closing</strong>
+                                <div class="col">
+                                    <span t-if="opportunity.date_deadline" t-field="opportunity.date_deadline"/>
+                                    <span t-else="" class="text-muted"> - </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <strong class="col-12 col-sm-4">Priority</strong>
+                                <div class="col">
+                                    <span class="" title="Rating" role="img" t-attf-aria-label="Rating: #{opportunity.priority} on 4">
+                                        <t t-foreach="range(1, 4)" t-as="i">
+                                            <span t-attf-class="fa text-warning fa-lg fa-star#{'' if i &lt;= int(opportunity.priority) else '-o'}" role="img" t-att-aria-label="'Star %d of 3' % i"/>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <strong class="col-12 col-sm-4">Next Activity</strong>
+                                <div class="col" t-if="user_activity">
+                                    <span t-field="user_activity.activity_type_id"/>
+                                    <span t-if="user_activity.date_deadline">&#160;on&#160;</span>
+                                    <span t-field="user_activity.date_deadline"/>
+                                    <em class="d-block" t-field="user_activity.summary"/>
+                                </div>
+                                <div class="col" t-else="">
+                                    <span class="text-muted"> - </span>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt8 mb8">
+                                <strong class="col-12 col-sm-4">Estimation Weight</strong>
+                                <div class="col" t-if="opportunity.estimation_weight">
+                                    <span>
+                                        <span t-field="opportunity.estimation_weight"/> Kg </span>
+                                </div>
+                                <div class="col" t-else="">
+                                    <span class="text-muted"> - </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==== MODALS ==== -->
+                        <div>
+                            <div role="dialog" class="modal fade modal_edit_opp">
+                                <div class="modal-dialog">
+                                    <form method="POST" class="js_accept_json modal-content js_website_submit_form edit_opp_form">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="opportunity_id" class="opportunity_id" t-att-value="opportunity.id"/>
+                                        <header class="modal-header">
+                                            <h4 class="modal-title">Edit Lead</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </header>
+                                        <main class="modal-body" id="sign-dialog">
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5 pe-0">
+                                                        <label>Priority:</label>
+                                                        <div class="input-group">
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="PriorityRadioOptions" value="0" t-att-checked="opportunity.priority not in ['1','2','3']" aria-label="Rating: 0 on 3" title="Rating: 0 on 3"/>
+                                                                <i class="ms-1 fa fa-star-o"></i>
+                                                            </label>
+                                                            <label class="radio-inline ms-2">
+                                                                <input type="radio" name="PriorityRadioOptions" value="1" t-att-checked="opportunity.priority == '1'" aria-label="Rating: 1 on 3" title="Rating: 1 on 3"/>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                            </label>
+                                                            <label class="radio-inline ms-2">
+                                                                <input type="radio" name="PriorityRadioOptions" value="2" t-att-checked="opportunity.priority == '2'" aria-label="Rating: 2 on 3" title="Rating: 2 on 3"/>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                            </label>
+                                                            <label class="radio-inline ms-2">
+                                                                <input type="radio" name="PriorityRadioOptions" value="3" t-att-checked="opportunity.priority == '3'" aria-label="Rating: 3 on 3" title="Rating: 3 on 3"/>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                                <i class="ms-1 fa text-warning fa-star"></i>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <label>Expected Closing:</label>
+                                                        <div class="input-group date" id="exp_closing_div">
+                                                            <t t-set='date_formatted'><t t-options='{"widget": "date"}' t-esc="opportunity.date_deadline"/></t>
+                                                            <input type="text" data-widget="datetime-picker" data-widget-type="date" name="date_deadline" t-att-value="date_formatted" class="datetimepicker-input form-control date_deadline" t-att-name="prefix"/>
+                                                            <span class="input-group-text">
+                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label class="col-form-label" for="next_activity">Next Activity</label>
+                                                        <select class="form-select next_activity" name="next_activity">
+                                                            <t t-foreach="activity_types" t-as="activity_type">
+                                                                <option t-att-data="activity_type.id" t-att-selected="activity_type.id == user_activity.activity_type_id.id"
+                                                                    t-att-name="activity_type.name" t-att-delay_count="activity_type.delay_count"
+                                                                    t-att-delay_unit="activity_type.delay_unit" t-att-summary="activity_type.summary">
+                                                                <t t-esc="activity_type.name"/></option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <label class="col-form-label" for="activity_date_deadline">Next Activity Date</label>
+                                                        <div class="input-group date" id="next_activity_div" >
+                                                            <t t-set='date_formatted'><t t-options='{"widget": "date"}' t-esc="user_activity.date_deadline"/></t>
+                                                            <input type="text" data-widget="datetime-picker" data-widget-type="date" name="activity_date_deadline" t-att-value="date_formatted" class="form-control activity_date_deadline datetimepicker-input" t-att-name="prefix"/>
+                                                            <span class="input-group-text">
+                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar" title="Calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label class="col-form-label" for="estimation_weight">Estimation Weight</label>
+                                                        <div class="input-group" id="estimation_weight_div" >
+                                                            <input type="text" data-widget-type="float" name="estimation_weight" t-att-value="opportunity.estimation_weight" class="form-control estimation_weight"/>
+                                                            <span class="input-group-text">
+                                                                <span> Kg </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="col-form-label" for="activity_summary">Details Next Activity</label>
+                                                <textarea rows="6" name="activity_summary" class="form-control activity_summary"><t t-esc="user_activity.summary"/></textarea>
+                                            </div>
+                                        </main>
+                                        <footer class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button t-attf-class="btn btn-primary edit_opp_confirm">Confirm</button>
+                                        </footer>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <hr/>
+            <div>
+                <h3>Communication history</h3>
+                <div>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="opportunity"/>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <template id="portal_my_vendor_leads" name="Vendor Leads">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Leads</t>
+            </t>
+            <t t-if="not opportunities">
+                <div class="alert alert-warning" role="alert">
+                    There are no leads.
+                </div>
+            </t>
+            <t t-if="opportunities" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="w-10">Date</th>
+                        <th class="w-60">Lead</th>
+                        <th class="w-30">Stage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="opportunities" t-as="opp">
+                        <td><span t-field="opp.create_date" t-options='{"widget": "date"}' /></td>
+                        <td class="text-wrap">
+                            <a t-attf-href="/vendor/leads/#{opp.id}"><span t-field="opp.name"/></a>
+                        </td>
+                        <td>
+                            <span class="badge text-bg-info rounded-pill" title="Current stage of the opportunity" t-esc="opp.stage_id.name" />
+                        </td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+</odoo>

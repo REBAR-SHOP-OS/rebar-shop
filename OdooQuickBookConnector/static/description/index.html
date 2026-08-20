@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Odoo QuickBooks Connector | Odoo Apps </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .ul li:hover {
+            background-color: orange;
+            padding: 13px 0px 12px 15px !important;
+            cursor: pointer;
+        }
+
+        /* #f6a106 */
+        .ul li:active {
+            background-color: #ffa500;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container" style="padding: 0px;">
+        <div style=" background-color: #f9f6f1;">
+            <div style="padding: 17px;text-align: center;">
+                <img src="./images/logo.png" alt="logo" width="222" height="63">
+            </div>
+            <div style=" margin: 0 auto;max-width: 727px;text-align: center;padding-bottom: 60px;color: #000;">
+                <div>
+                    <h4>
+                        Odoo QuickBooks Connector
+                    </h4>
+                    <p>
+                        Discover seamless integration between Odoo and QuickBooks with our comprehensive module, facilitating two-way synchronization of critical data.
+                        Effortlessly manage Contacts, Items, Sales Orders, Purchase Orders, Invoices, Bills, Credit Notes, and Payments between the two platforms, ensuring consistency and accuracy across your business processes.
+                        Maintain up-to-date customer and vendor information, streamline inventory management, and track sales and procurement seamlessly. With real-time synchronization, eliminate manual data entry and errors, enabling you to focus on business growth.
+                        Experience the efficiency and ease of our Odoo QuickBooks Integration Module today and optimize your workflow for maximum productivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card"
+            style="text-align: center;max-width: 80%;margin: 0 auto;margin-top: -55px;border-top-right-radius: 18px;border-top-left-radius: 18px;;border:0;">
+            <div class="bg-danger card-header"
+                style="color: #ffffff;font-size: 24px;border-radius: calc(1.1rem - 1px) calc(1.1rem - 1px) 0 0;padding: 9px 0px 12px 0px;background-color: #875a7b;text-align: center;border: none;">
+                Customize Your Odoo The Way Your Business Works in  QuickBooks!
+            </div>
+            <div class="card-body" style="border: 1px solid rgba(0,0,0,.125);">
+                    <p>
+                        Odoo QuickBooks Connector allows user to sync bills,Invoices and Contacts from  QuickBooks to odoo.User can map QuickBooks accounts and taxes in odoo.User can also sync Contacts,Items,Bills,Invoices,Sales Order,Purchase Order in Odoo.
+                    </p>
+                <h4 class="card-text">Our Helpful Links</h4>
+                <div class="text-center pt-2 pb-3">
+                    <a class="btn btn-danger mb-2 mb-lg-0" href="https://www.youtube.com/watch?v=vhAy9WTxPeM"
+                        target="_blank"
+                        style="border-radius: unset;padding:10px;position: relative; overflow: hidden;"><i
+                            class="fas fa-video mr-1"></i> Demo Video
+                    </a>
+                    <a class="btn btn-danger ml-1 mb-2 mb-lg-0"
+                        href="https://apps.odoo.com/apps/modules/browse?search=Techloyce" target="_blank"
+                        style="border-radius: unset;;padding:10px;position: relative; overflow: hidden;"><i
+                            class="fa fa-list-alt mr-1"></i>
+                        <span class="d-none d-sm-inline">Techloyce</span> All Apps
+                    </a>
+                </div>
+                <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color:#dc3545; border-radius:50px; width:400px">
+                <div class="text-center" style="color:#091E42; font-family:Montserrat; padding:0; min-width:100%; height:40px; vertical-align:middle">
+                        <span class="" style="padding:7px 15px 0 20px; color:#fff; float:left; font-weight:600; font-size:15px; line-height:25px">
+                        Request a Free Demo
+                        </span>
+                    <span class="mt-2 d-flex"></span>
+                    <span class="position-relative" style="vertical-align:middle; background-color:#fff; color:#000; border-radius:50px; padding:4px 20px; font-weight:600">techloyce.com/contact-us</span>
+                </div>
+            </div>
+            <div style="padding-bottom: 11px;padding-top: 15px;">
+                <a style="background-color: beige;border-radius: 15px;" href="https://www.facebook.com/Techloyce/" target="_blank">
+                    <i class="fa fa-fw fa-facebook"
+                       style="background-color: #3B5998 !important;color: #ffffff;padding: 1px;line-height: 1.4;font-size: 16px;width: 22px;height: 22px; text-align:center;text-decoration:none;margin: 1px 1px;border-radius: 50%;"></i>
+                    https://www.facebook.com/Techloyce/
+                </a>
+                <a style="background-color: beige;border-radius: 15px;" href="https://twitter.com/techloyce/" target="_blank">
+                    <i class="fa fa-fw fa-twitter"
+                       style="background-color: #55ACEE;color: #ffffff;padding: 1px;line-height: 1.3;font-size: 16px;width: 22px;height: 22px; text-align:center;text-decoration:none;margin: 1px 1px;border-radius: 50%;"></i>
+                    https://twitter.com/techloyce/
+                </a>
+                <a style="background-color: beige;border-radius: 15px;" href="https://www.linkedin.com/company/techloyce/" target="_blank">
+                    <i class="fa fa-fw fa-linkedin"
+                       style="background-color: #007bb5;color: #ffffff;padding: 1px;line-height: 1.3;font-size: 16px;width: 22px;height: 22px; text-align:center;text-decoration:none;margin: 1px 1px;border-radius: 50%;"></i>
+                    https://www.linkedin.com/company/techloyce/
+                </a>
+            </div>
+            </div>
+        </div>
+        <br>
+        <div class="card"
+            style="text-align: center;max-width: 80%;margin: 0 auto;margin-top: 40px;margin-bottom: 63px;border-top-right-radius: 18px;border-top-left-radius: 18px;border:0;">
+            <div class="bg-danger card-header"
+                style="text-transform: uppercase;color: #ffffff;font-size: 24px;border-radius: calc(1.1rem - 1px) calc(1.1rem - 1px) 0 0;padding: 9px 0px 12px 0px;background-color: #875a7b;text-align: center;border: none;">
+                Highlights
+            </div>
+        </div>
+        <section>
+            <div class="row">
+                <div class="col-md-6" style="padding-right: 11px!important;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 100px 0px 35px 100px;">
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/Customers.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                            <div style="padding-left: 10px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Contacts Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                    Two way synchronization of Customer and Vendors in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 11px!important;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 0px 100px 100px 35px;">
+                            <div style="padding-left: 15px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Items Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                     Two way synchronization of items in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;padding-top:39px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/Products.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 100px 35px 0px 100px;">
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;padding-top:40px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/SaleOrder.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                            <div style="padding-left: 10px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Sales Order Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                    Two way synchronization of Sales Order in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 35px 100px 100px 0px;">
+                            <div style="padding-left: 15px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Purchase Order Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                     Two way synchronization of Purchase Order in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding-left: 39px;padding-top: 30px;padding: 29px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/PurchaseOrder.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 100px 0px 35px 100px;">
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/invoice.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                            <div style="padding-left: 10px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Invoice Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                     Two way synchronization of Invoice in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 0px 100px 100px 35px;">
+                            <div style="padding-left: 15px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Bills Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                    Two way synchronization of Bills in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;padding-top:39px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/bills.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 100px 35px 0px 100px;">
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding: 25px;padding-top:40px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/credit_notes.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                            <div style="padding-left: 10px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Credit Note Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                    Two way synchronization of Credit Note in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 11px!important;margin-top: 35px;">
+                    <div class="container" style="padding: 0;">
+                        <div class="d-flex align-items-center justify-content-between"
+                            style="background-color: #edf7f9;height: 100%;border-radius: 35px 100px 100px 0px;">
+                            <div style="padding-left: 15px;padding-right: 10px;">
+                                <p style="font-size: 18px;font-weight: 600;margin: 0;color:#dc3545">
+                                    Payments Synchronization
+                                </p>
+                                <p style="color: #000;">
+                                    Two way synchronization of Payments in between QuickBooks and Odoo.
+                                </p>
+                            </div>
+                            <div class="shadow-sm"
+                                style="border: 8px solid #fff;border-radius: 50%;padding-left: 39px;padding-top: 30px;padding: 29px;width: 240px;height: 197px;text-align: center;background-color: #edf7f9;">
+                                <img src="./images/payment.png" alt=""
+                                    style="width: 104px;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="max-width: 80%;margin: 0 auto;margin-top: 63px;">
+            <div class="bg-danger d-flex justify-content-center"
+                style="border-top-right-radius: 18px;border-top-left-radius: 18px;background-color: #dc3545;">
+                <ul role="tablist" data-tabs="tabs" class="nav nav-tabs"
+                    style="list-style: none;margin: 0;text-transform: uppercase;;border: none;background-color: #dc3545;">
+                    <li class="nav-item" role="presentation"
+                        style="display: inline;font-size: 17px;padding: 9px 0px 8px 15px!important;cursor: pointer !important;">
+                        <a href="#features" data-bs-toggle="tab" aria-expanded="true" class="active show"
+                            style="text-transform:uppercase; letter-spacing:1px; color: #ffffff;text-decoration: none;background-color: #dc3545;">
+                            <img src="./images/star.png" width="20"
+                                style="padding-bottom: 5px;margin-right: 3px;">Features
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation"
+                        style="display: inline;font-size: 17px;padding: 9px 0px 8px 15px!important;cursor: pointer !important;">
+                        <a href="#screenshots" data-bs-toggle="tab" aria-expanded="true" class=""
+                            style="text-transform:uppercase; letter-spacing:1px; color: #ffffff;text-decoration: none;background-color: #dc3545;"><img
+                                src="./images/10.png" width="20"
+                                style="padding-bottom: 5px;margin-right: 3px;">Screenshots
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation"
+                        style="display: inline;font-size: 17px;padding: 9px 0px 8px 15px!important;cursor: pointer !important;">
+                        <a href="#support" data-bs-toggle="tab" aria-expanded="true" class=""
+                            style="text-transform:uppercase; letter-spacing:1px; color: #ffffff;text-decoration: none;background-color: #dc3545;"><img
+                                src="./images/11.png" width="18" style="padding-bottom: 4px;margin-right: 3px;">Support
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation"
+                        style="display: inline;font-size: 17px;padding: 9px 0px 8px 15px!important;cursor: pointer !important;">
+                        <a href="#faqs" data-bs-toggle="tab" aria-expanded="true" class=""
+                            style="text-transform:uppercase; letter-spacing:1px; color: #ffffff;text-decoration: none;background-color: #dc3545;"><img
+                                src="./images/12.png" width="20" style="padding-bottom: 5px;margin-right: 3px;">FAQ'S
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="loempia_tabs_content_ept" class="tab-content">
+                <!-- Features Tabs -->
+                <div class="tab-pane active show" id="features">
+                    <div class="">
+
+                        <p
+                            style="color:#000;margin:0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;">
+                                Library Requirements, Install package named "suds-py3" and "xmltodict" before using our package </p>
+                         <ul style="margin: 0;background-color: #d9e1e32e;color: #000;">
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Run following command in terminal/shell in case of odoo.sh or any other server:
+                            "pip install suds-py3"
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Run following command in terminal/shell in case of odoo.sh or any other server:
+                            "pip install xmltodict"
+                            </li>
+                        </ul>
+                        <p
+                            style="color:#000;margin:0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;text-align: center;">
+                                Quickbooks to Odoo Instant Sync Operation </p>
+                        <ul style="margin: 0;background-color: #d9e1e32e;color: #000;">
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Customer from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Vendor from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Items from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Sales Order from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Purchase Order from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Invoice from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Bills from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Credit Notes from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Refunds from Quickbooks to Odoo.
+                            </li>
+                            <li style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                Sync Payments from Quickbooks to Odoo.
+                            </li>
+                        </ul>
+                        <p
+                            style="color: #000;margin:0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;margin-top: 15px;text-align: center;">
+                            Odoo to Quickbooks Sync Operations </p>
+                        <ul style="color: #000;margin: 0;background-color: #d9e1e32e;line-height: 1.3;">
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                                Sync Sales order from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Purchase order from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Customer Invoices from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Vendor Bills from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Customer Credit Notes from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Vendor Refunds from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Customer Payments from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Vendor Payments from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Products In Customer Invoices from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Products In Vendor Bills from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Contacts in  Invoices from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Contacts in Bills from Odoo to Quickbooks.
+                            </li>
+
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Products In Sales Order from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Products In Purchase Order from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Contacts in Sales Order from Odoo to Quickbooks.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Contacts in Purchase Order from Odoo to Quickbooks.
+                            </li>
+                        </ul>
+                        <p
+                            style="color: #000;margin:0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;margin-top: 15px;text-align: center;">
+                            QuickBooks to Odoo Sync Operations</p>
+                        <ul style="color: #000;margin: 0;background-color: #d9e1e32e;line-height: 1.3;">
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Accounts from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Taxes from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Contacts from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Customer from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Vendors from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Items from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Payments Terms from  QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Sales Order from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Purchase Orders from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Invoices from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Bills from QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Credit Notes from  QuickBooks to Odoo.
+                            </li>
+                            <li class="mb8" style="padding: 15px 0 0 0px; ;font-size: 16px;line-height: 1.3;">
+                                            Sync Payments from  QuickBooks to Odoo.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane" id="screenshots">
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                        <ul style="color: #000;margin: 0;text-align: left;">
+                            <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                Click on the QuickBooks Setting.
+                            </li>
+                        </ul>
+                        <a href="./images/Monday_2.png" target="_blank">
+                            <p class="mb0"><img src="./images/q1.png" alt=""
+                                    style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </p>
+                        </a>
+                    </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                        <ul style="color: #000;margin: 0;text-align: left;">
+                            <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                (In Quickbooks) Go to intuit developer app->keys and credentials and copy your client id and client secret.
+                            </li>
+                        </ul>
+                        <a href="./images/Monday_2.png" target="_blank">
+                            <p class="mb0"><img src="./images/q2.png" alt=""
+                                    style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                            </p>
+                        </a>
+                    </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Paste your client id and client secret in the respective fields.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q(3).png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Copy your redirect url.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q(4).png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    (In Quickbooks) Paste the copied redirect url in the highlighted field in your intuit developer app.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q5.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Click on the Build Connection.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q(6).png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Upon successful authorization you will be shown success page.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q7.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the options you want to sync and click save button.To start sync click "START SYNC" button.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q(8).png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the Sale Order you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q9.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the Purchase Order you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q10.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the Invoices you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q11.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the Bill you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q12.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the credit note you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q13.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Select the payment you want to sync and click on Action Button and then sync to quickbook.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q14.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    To reconcile the Journal Entry with payment post the Journal Entry by selecting the Journal Entry and then click "Action" button and select "Post Entries" option.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q15.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Click on "Post Journal Entries" button.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q16.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    The journal Entry is now posted.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q17.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Now post the Payments by selecting the Payment and click on Action button and then select post payment option.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q18.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Payment is now posted.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q19.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Reconcile the Journal Entry with Payment by selecting the Journal Entry and then click "Action" Button and select "Reconcile" option.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q20.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Selected Journal Item is now reconciled and its payment status is visible.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q21.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    To complete the Payment reconciling process select the payment and click "Action" Button and select "Reconcile" option.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q22.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                    <div style="text-align: center;background-color: #d9e1e32e;">
+                            <ul style="color: #000;margin: 0;text-align: left;">
+                                <li style="padding: 15px 0 0 0px;font-size: 19px;line-height: 1.3;font-weight: 500;">
+                                    Journal Entry is fully Reconciled.
+                                </li>
+                            </ul>
+                            <a href="./images/Monday_2.png" target="_blank">
+                                <p class="mb0"><img src="./images/q23.png" alt=""
+                                        style="padding: 15px 0;;width: 53rem;max-width: 100%;height: auto;vertical-align: middle;border-style: none;">
+                                </p>
+                            </a>
+                        </div>
+                </div>
+                <div class="tab-pane " id="support">
+                    <div style="background-color: #d9e1e32e;">
+                    <p style="color: #000;text-align: center;margin: 0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;">Odoo Quickbooks Product Support</p>
+                    <p style="color: #000;padding: 33px 77px;text-align: center;font-weight: 500; margin: 0;">
+                        After purchasing if you face any issue regarding the functionality/working of our app, we are
+                        here to address your queries. We provide 90-days support to our clients.The support period
+                        starts from the date of app purchase till 90 days onward.
+                    </p>
+                    <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color:#dc3545; border-radius:50px; width:500px">
+                        <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color:#dc3545; border-radius:50px; width:500px">
+                            <div class="text-center"
+                                 style="color:#091E42; font-family:Montserrat; padding:0; min-width:100%; height:40px; vertical-align:middle">
+                        <span class=""
+                              style="padding:7px 15px 0 20px; color:#fff; float:left; font-weight:600; font-size:15px; line-height:25px">
+                        Support Policy
+                        </span>
+                                <span class="mt-2 d-flex"></span>
+                                <span class="position-relative"
+                                      style="vertical-align:middle; background-color:#fff; color:#000; border-radius:50px; padding:4px 20px; font-weight:600">techloyce.com/book-a-free-consultation/</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color:#dc3545; border-radius:50px; width:500px">
+                        <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color:#dc3545; border-radius:50px; width:500px">
+                            <div class="text-center"
+                                 style="color:#091E42; font-family:Montserrat; padding:0; min-width:100%; height:40px; vertical-align:middle">
+                        <span class=""
+                              style="padding:7px 15px 0 20px; color:#fff; float:left; font-weight:600; font-size:15px; line-height:25px">
+                        Privacy Policy
+                        </span>
+                                <span class="mt-2 d-flex"></span>
+                                <span class="position-relative"
+                                      style="vertical-align:middle; background-color:#fff; color:#000; border-radius:50px; padding:4px 20px; font-weight:600">techloyce.com/privacy-policy/</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--                    <div style="background-color: #d9e1e32e;">-->
+<!--                        <div>-->
+<!--                            <div class="text-center" style="padding: 37px 0px;">-->
+<!--                                <a class="btn btn-danger mb-2 mb-lg-0"-->
+<!--                                    href="https://www.techloyce.com/" target="_blank"-->
+<!--                                    style="width: 163px;border-radius: unset;padding:10px;position: relative; overflow: hidden;">-->
+<!--                                    <span style="padding: 0 2px;"><img src="./images/17.png" width="15" alt=""></span>-->
+<!--                                    User Guide-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <p-->
+<!--                            style="color: #000;text-align: center;margin: 0;font-weight: bold;font-size: 17px;font-family: Inter, Odoo Unicode Support Noto, sans-serif;background-color: #e4edef9c!important;padding: 8px 0 8px 17px;">-->
+<!--                            Odoo Quickbooks Product Support</p>-->
+<!--                        <p style="color: #000;padding: 33px 77px;text-align: center;font-weight: 500; margin: 0;">-->
+<!--                            After purchasing this app if you face any issue regarding the functionality/working of our app, we are here to address your queries. We provide 90-days support to our clients.The support period starts from the date of app purchased till 90 days onward.-->
+<!--                        </p>-->
+<!--                        <div class="text-center" style="padding-bottom: 30px;">-->
+<!--                            <a class="btn btn-danger mb-2 mb-lg-0" href="https://www.techloyce.com/book-a-free-consultation/"-->
+<!--                                target="_blank"-->
+<!--                                style="width: 250px;border-radius: unset;padding:10px;position: relative; overflow: hidden;">-->
+<!--                                <span style="padding: 0 6px 0px 14px;"><img src="./images/19.png" width="16"-->
+<!--                                        style="padding-bottom: 1px;" alt=""></span>Support Desk-->
+<!--                            </a>-->
+<!--                            <a class="btn btn-danger ml-1 mb-2 mb-lg-0" href="https://www.techloyce.com/privacy-policy/"-->
+<!--                                target="_blank"-->
+<!--                                style="width: 250px;border-radius: unset;padding:10px;position: relative; overflow: hidden;"><span-->
+<!--                                    style="padding: 0 6px;"><img src="./images/20.png" width="22" alt=""></span>Support-->
+<!--                                Policy</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+                <div class="tab-pane" id="faqs">
+                    <section class="oe_container">
+                        <div class="s_faq mt32 mb32" style="background-color: transparent !important;">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel-group"
+                                     style="border: 1px solid #ddd;border-radius: 10px;margin-bottom: 20px;">
+                                    <div class="panel panel-default"
+                                         style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);padding: 15px 15px;border-radius: 10px;">
+                                        <div class="panel-heading mt0"
+                                             style="border:1px solid transparent !important;">
+                                            <h4 class="panel-title" style="margin: 0;">
+                                                <a class="collapsed"
+                                                   style="color: #000;font-size: 20px;font-weight: 500;font-family: Roboto;"
+                                                   data-toggle="collapse" href="#faq0" aria-expanded="false">
+                                                            <span class="panelcontent" style="padding: 0% 2%;">
+                                                             What is redirect Url?
+                                                            </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="faq0" class="panel-collapse collapse show"
+                                             style="background-color: rgb(240, 244, 247); padding: 15px;">
+                                            <div>
+                                                <p class="mb32"
+                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">
+                                                    Redirect url is used to authenticate you app with Quickbooks using your client id and client secret.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-group"
+                                     style="border: 1px solid #ddd;border-radius: 10px;margin-bottom: 20px;">
+                                    <div class="panel panel-default"
+                                         style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);padding: 15px 15px;border-radius: 10px;">
+                                        <div class="panel-heading mt0"
+                                             style="border:1px solid transparent !important;">
+                                            <h4 class="panel-title" style="margin: 0;">
+                                                <a class="collapsed"
+                                                   style="color: #000;font-size: 20px;font-weight: 500;font-family: Roboto;"
+                                                   data-toggle="collapse" href="#faq1" aria-expanded="false">
+                                                     <span class="panelcontent" style="padding: 0% 2%;">
+                                                         I need an extra feature in this app. How can I request it?
+                                                     </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="faq1" class="panel-collapse collapse show"
+                                             style="background-color: rgb(240, 244, 247); padding: 15px;">
+                                            <div>
+                                                <p class="mb32"
+                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">
+                                                        Upgrades are not free. If you require any customization, you can contact us. We offer support for 90 days after purchase. For further information you can contact us at <span style="background-color: #f0f0f0; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-weight: bold; color: #0074ff; text-decoration: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">https://techloyce.com/contact-us</span> or read our support policy.</p>
+                                            </div>
+                                        </div>
+<!--                                        <div id="faq1" class="panel-collapse collapse show"-->
+<!--                                             style="background-color: rgb(240, 244, 247); padding: 15px;">-->
+<!--                                            <div>-->
+<!--                                                <div class="mb32"-->
+<!--                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">-->
+<!--                                                    <p class="mb0" style="height:auto; padding-left:2%; margin-left:2%; font-family:Roboto">-->
+<!--                                                        Upgrades are not free. If you require any customization, you can contact us. We offer support for 90 days after purchase. For further information you can contact us at <span style="background-color: #f0f0f0; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-weight: bold; color: #0074ff; text-decoration: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">https://techloyce.com</span> or read our support policy.</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+<!--                                <div class="panel-group"-->
+<!--                                     style="border: 1px solid #ddd;border-radius: 10px;margin-bottom: 20px;">-->
+<!--                                    <div class="panel panel-default"-->
+<!--                                         style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);padding: 15px 15px;border-radius: 10px;">-->
+<!--                                        <div class="panel-heading mt0"-->
+<!--                                             style="border:1px solid transparent !important;">-->
+<!--                                            <h4 class="panel-title" style="margin: 0;">-->
+<!--                                                <a class="collapsed"-->
+<!--                                                   style="color: #000;font-size: 20px;font-weight: 500;font-family: Roboto;"-->
+<!--                                                   data-toggle="collapse" href="#faq1" aria-expanded="false">-->
+<!--                                                     <span class="panelcontent" style="padding: 0% 2%;">-->
+<!--                                                         I need an extra feature in this app. How can I request it?-->
+<!--                                                     </span>-->
+<!--                                                </a>-->
+<!--                                            </h4>-->
+<!--                                        </div>-->
+<!--                                        <div id="faq1" class="panel-collapse collapse show"-->
+<!--                                             style="background-color: rgb(240, 244, 247); padding: 15px;">-->
+<!--                                            <div>-->
+<!--&lt;!&ndash;                                                <div class="mb32"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    You can contact us to request a customization in the app.&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div style="font-weight:500; font-size:15px; margin:0 auto; border:1px solid #dc3545; display:flex; background-color: rgb(240, 244, 247);; border-radius:50px; width:400px">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div class="text-center" style="color:#091E42; font-family:Montserrat; padding:0; min-width:100%; height:40px; vertical-align:middle">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span class="" style="padding:7px 15px 0 20px; color:black; float:left; font-weight:600; font-size:15px; line-height:25px">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            Request a Free Demo&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span class="mt-2 d-flex"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                         <span class="position-relative" style="vertical-align:middle; background-color:#fff; color:#000; border-radius:50px; padding:4px 20px; font-weight:600">techloyce.com/contact-us</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="panel-group"
+                                     style="border: 1px solid #ddd;border-radius: 10px;margin-bottom: 20px;">
+                                    <div class="panel panel-default"
+                                         style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);padding: 15px 15px;border-radius: 10px;">
+                                        <div class="panel-heading mt0"
+                                             style="border:1px solid transparent !important;">
+                                            <h4 class="panel-title" style="margin: 0;">
+                                                <a class="collapsed"
+                                                   style="color: #000;font-size: 20px;font-weight: 500;font-family: Roboto;"
+                                                   data-toggle="collapse" href="#faq4" aria-expanded="false">
+                                                     <span class="panelcontent" style="padding: 0% 2%;">
+                                                         Can customization can be applied if i don't want to map account and taxes in odoo?
+                                                     </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="faq4" class="panel-collapse collapse show"
+                                             style="background-color: rgb(240, 244, 247); padding: 15px;">
+                                            <div>
+                                                <p class="mb32"
+                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">
+                                                    Yes we can provide you the customized module in which you don't have to map the account and taxes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-group"
+                                     style="border: 1px solid #ddd;border-radius: 10px;margin-bottom: 20px;">
+                                    <div class="panel panel-default"
+                                         style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);padding: 15px 15px;border-radius: 10px;">
+                                        <div class="panel-heading mt0"
+                                             style="border:1px solid transparent !important;">
+                                            <h4 class="panel-title" style="margin: 0;">
+                                                <a class="collapsed"
+                                                   style="color: #000;font-size: 20px;font-weight: 500;font-family: Roboto;"
+                                                   data-toggle="collapse" href="#faq4" aria-expanded="false">
+                                                     <span class="panelcontent" style="padding: 0% 2%;">
+                                                         Is Odoo QuickBooks Connector can be used for multiuser?
+                                                     </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="faq5" class="panel-collapse collapse show"
+                                             style="background-color: rgb(240, 244, 247); padding: 15px;">
+                                            <div>
+                                                <p class="mb32"
+                                                   style="border-left: 4px dotted #e6e8ea;height: auto;padding-left: 3%;margin-left: 2%;font-family: Roboto;">
+                                                    Our current module works only for a single user but if you want multiuser we will be happy to do it for you. Kindly contact us at <span style="background-color: #f0f0f0; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-weight: bold; color: #0074ff; text-decoration: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">https://www.techloyce.com/book-a-free-consultation</span>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            <section>
+                <div class="card" style="text-align: center;margin: 0 auto;margin-top: 75px;margin-bottom: 33px;border-top-right-radius: 18px;border-top-left-radius: 18px;border:0;">
+                    <div class="card-header bg-danger" style="text-transform: uppercase;color: #ffffff;font-size: 24px;border-radius: calc(1.1rem - 1px) calc(1.1rem - 1px) 0 0;padding: 9px 0px 12px 0px; text-align: center;border: none;">
+                        Suggested Products
+                    </div>
+                </div>
+                <div id="demo" class="text-center" style="margin-top: 33px;margin-bottom: 40px; display: flex; flex-wrap: wrap;">
+                    <div class="col-sm-4 float-left" style="flex: 0 0 auto;">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/odoo_office365/"><img class="img-fluid" style="width:283px" src="./images/21.jpg"></a>
+                        <div style="color: #000;">Odoo Office 365 Connector</div>
+                    </div>
+                    <div class="col-sm-4 float-left" style="flex: 0 0 auto;">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/odoo_helpdesk_zendesk_integration/"><img class="img-fluid" style="width:283px" src="./images/22.jpg"></a>
+                        <div style="color: #000;">Odoo Zendesk Connector</div>
+                    </div>
+                    <div class="col-sm-4 float-left" style="flex: 0 0 auto;">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/ava__tax/"><img class="img-fluid" style="width:283px" src="./images/23.jpg"></a>
+                        <div style="color: #000;">Avalara for Sales</div>
+                    </div>
+                    <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-bs-slide="prev" style="width:35px; color:#000">
+                          <span class="carousel-control-prev-icon">
+                            <i class="fa fa-chevron-left" style="font-size:24px"></i>
+                          </span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#demo" data-bs-slide="next" style="margin-right:-30px; width:35px; color:#000">
+                          <span class="carousel-control-next-icon">
+                            <i class="fa fa-chevron-right" style="font-size:24px"></i>
+                          </span>
+                        </a>
+                </div>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>

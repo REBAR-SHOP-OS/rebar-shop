@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_packing_slip_document">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <t t-set="forced_vat" t-value="o.fiscal_position_id.foreign_vat" />
+                <div class="mt-5 clearfix">
+                    <div class="page mb-4">
+                        <h2 style="font-weight: normal !important;">
+                            <span>Packing Slip</span>
+                        </h2>
+                        <div class="oe_structure"></div>
+                        <div id="informations" class="row mt-3 mb-1">
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                t-if="o.partner_id" name="partner_id">
+                                <t t-if="o.partner_id">
+                                    <strong style="color: #377baf !important;font-weight: normal;">BILL
+                                        TO</strong>
+                                </t>
+                                <t t-else="">
+                                    <strong style="color: #377baf !important;font-weight: normal;">BILL
+                                        TO</strong>
+                                </t>
+                                <br />
+                                <span t-field="o.partner_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'>Mitchell
+                                    Admin</span>
+                            </div>
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                name="street">
+                                <strong style="color: #377baf !important;font-weight: normal;">SHIP
+                                    TO</strong>
+                                <br />
+                                <span t-field="o.street" />
+                                <br />
+                                <span t-field="o.street2" />
+                                <br />
+                                <span t-field="o.city" />
+                                <span t-field="o.zip" />
+                                <br />
+                                <span t-field="o.state_id.name"></span>
+                                <br />
+                                <span t-field="o.country_id.name" />
+                                <br />
+                            </div>
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                t-if="o.carrier_id" name="carrier_id">
+                                <strong style="color: #377baf !important;font-weight: normal;"
+                                    class="ml-1">SHIP VIA</strong>
+                                <span t-field="o.carrier_id">Delivery</span>
+                            </div>
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                t-if="o.invoice_date" name="invoice_date">
+                                <strong style="color: #377baf !important;font-weight: normal;"
+                                    class="ml-1">INVOICE DATE</strong>
+                                <span t-field="o.invoice_date">dd/mm/yyyy</span>
+                            </div>
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                t-if="o.partner_id.ref" name="customer_code">
+                                <strong style="color: #377baf !important;font-weight: normal;">SALES
+                                    REP NAME</strong>
+                                <br />
+                                <span t-field="o.partner_id.ref" />
+                            </div>
+                        </div>
+                        <div id="informations" class="row mt-3 mb-1">
+                            <div
+                                t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                t-if="o.invoice_user_id" name="invoice_user_id">
+                                <t t-if="o.invoice_user_id">
+                                    <strong style="color: #377baf !important;font-weight: normal;">SALES
+                                        REP NAME</strong>
+                                </t>
+                                <t t-else="">
+                                    <strong style="color: #377baf !important;font-weight: normal;">SALES
+                                        REP NAME</strong>
+                                </t>
+                                <br />
+                                <span t-field="o.invoice_user_id">Mitchell Admin</span>
+                            </div>
+                        </div>
+                        <t t-set="display_discount"
+                            t-value="any(l.discount for l in o.invoice_line_ids)" />
+                        <br />
+                        <div class="oe_structure"></div>
+                        <table class="table table-sm o_main_table table-borderless"
+                            name="invoice_line_table">
+                            <thead style="background:#dfe9f0 !important;">
+                                <tr>
+                                    <th name="th_date" class="text-start">
+                                        <span style="color: #377baf !important;font-weight: normal;">
+                                            DATE</span>
+                                    </th>
+                                    <th name="th_product" class="text-start">
+                                        <span></span>
+                                    </th>
+                                    <th name="th_description" class="text-start">
+                                        <span style="color: #377baf !important;font-weight: normal;">
+                                            DESCRIPTION</span>
+                                    </th>
+                                    <th name="th_quantity" class="text-end">
+                                        <span style="color: #377baf !important;font-weight: normal;">
+                                            QUANTITY</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <t t-set="current_subtotal" t-value="0" />
+                                <t t-set="current_total" t-value="0" />
+                                <t t-set="lines"
+                                    t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)" />
+
+                                <t t-foreach="lines" t-as="line">
+                                    <t t-set="current_subtotal"
+                                        t-value="current_subtotal + line.price_subtotal" />
+                                    <t t-set="current_total"
+                                        t-value="current_total + line.price_total" />
+
+                                    <tr
+                                        t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                        <t t-if="line.display_type == 'product'"
+                                            name="account_invoice_line_accountable">
+                                            <td name="account_invoice_date">
+                                                <span t-if="o.invoice_date" t-field="o.invoice_date">
+                                                    dd/mm/yyyy</span>
+                                            </td>
+                                            <td name="account_invoice_product_name">
+                                                <span t-if="line.product_id"
+                                                    t-field="line.product_id.name"
+                                                    t-options="{'widget': 'text'}">Bacon Burger</span>
+                                            </td>
+                                            <td name="account_invoice_line_name">
+                                                <span t-if="line.name" t-field="line.name"
+                                                    t-options="{'widget': 'text'}">Bacon Burger</span>
+                                            </td>
+                                            <td name="td_quantity" class="text-end">
+                                                <span t-field="line.quantity">3.00</span>
+                                                <span t-field="line.product_uom_id"
+                                                    groups="uom.group_uom">units</span>
+                                            </td>
+                                        </t>
+                                        <t t-elif="line.display_type == 'line_section'">
+                                            <td colspan="99">
+                                                <span t-field="line.name"
+                                                    t-options="{'widget': 'text'}">A section title</span>
+                                            </td>
+                                            <t t-set="current_section" t-value="line" />
+                                            <t t-set="current_subtotal" t-value="0" />
+                                        </t>
+                                        <t t-elif="line.display_type == 'line_note'">
+                                            <td colspan="99">
+                                                <span t-field="line.name"
+                                                    t-options="{'widget': 'text'}">A note, whose
+                                                    content usually applies to the section or
+                                                    product above.</span>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="report_account_invoice_packing">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang" />
+                    <t t-call="account_move_invoice.report_invoice_packing_slip_document"
+                        t-lang="lang" />
+                </t>
+            </t>
+        </template>
+        <record id="account_invoices_packing_slip" model="ir.actions.report">
+            <field name="name">Packing Slip</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account_move_invoice.report_account_invoice_packing</field>
+            <field name="attachment" />
+            <field name="binding_model_id" ref="model_account_move" />
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Security Groups -->
+        <record id="group_rebar_shop_user" model="res.groups">
+            <field name="name">Rebar Shop User</field>
+            <field name="category_id" ref="base.module_category_sales"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        
+        <record id="group_rebar_shop_manager" model="res.groups">
+            <field name="name">Rebar Shop Manager</field>
+            <field name="category_id" ref="base.module_category_sales"/>
+            <field name="implied_ids" eval="[(4, ref('group_rebar_shop_user'))]"/>
+        </record>
+        
+        <!-- Record Rules -->
+        <record id="rule_rebar_product_user" model="ir.rule">
+            <field name="name">Rebar Product User Rule</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="domain_force">[('sale_ok', '=', True)]</field>
+            <field name="groups" eval="[(4, ref('group_rebar_shop_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+        <record id="rule_rebar_product_manager" model="ir.rule">
+            <field name="name">Rebar Product Manager Rule</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_rebar_shop_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+        
+        <record id="rule_sale_order_own" model="ir.rule">
+            <field name="name">Sale Order Own Rule</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="domain_force">[('partner_id.user_ids', 'in', [user.id])]</field>
+            <field name="groups" eval="[(4, ref('group_rebar_shop_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+    </data>
+</odoo>

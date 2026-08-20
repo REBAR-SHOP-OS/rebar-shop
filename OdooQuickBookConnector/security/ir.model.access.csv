@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_coa_settings,access.coa.settings,model_coa_settings,base.group_user,1,1,1,1
+access_default_functions,access.default.functions,model_default_functions,base.group_user,1,1,1,1
+access_taxagency_settings,access.taxagency.settings,model_taxagency_settings,base.group_user,1,1,1,1
+access_taxes_settings,access.taxes.settings,model_taxes_settings,base.group_user,1,1,1,1

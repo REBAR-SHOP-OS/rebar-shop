@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+		<record id="qb_expense_product" model="product.product">
+			<field name="name">Expenses</field>
+<!--            <field name="categ_id" ref="product.product_category_3"/>-->
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+          	<field name="uom_id" ref="uom.product_uom_unit" />
+        	<field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="taxes_id" eval="[(6, 0, [])]"/>
+            <field name="supplier_taxes_id" eval="[(6, 0, [])]"/>
+		</record>
+        <record id="qb_tax_product" model="product.product">
+			<field name="name">Taxes</field>
+<!--            <field name="categ_id" ref="product.product_category_3"/>-->
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+          	<field name="uom_id" ref="uom.product_uom_unit" />
+        	<field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="taxes_id" eval="[(6, 0, [])]"/>
+            <field name="supplier_taxes_id" eval="[(6, 0, [])]"/>
+		</record>
+    </data>
+</odoo>

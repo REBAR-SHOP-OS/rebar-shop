@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Backend Template -->
+    <template id="RebarShopTemplate" name="Rebar Shop Backend Template">
+        <div class="rebar-shop-container">
+            <div class="rebar-shop-header">
+                <h1>Rebar Shop Management</h1>
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Search products..." 
+                        t-on-input="onSearchProducts"
+                        t-model="state.searchTerm"
+                    />
+                </div>
+            </div>
+            
+            <div class="rebar-shop-content" t-if="!state.loading">
+                <div class="products-grid">
+                    <div t-foreach="state.products" t-as="product" t-key="product.id" class="product-card">
+                        <div class="product-image">
+                            <img t-att-src="product.image_128" t-att-alt="product.name" />
+                        </div>
+                        <div class="product-info">
+                            <h3 t-esc="product.name"></h3>
+                            <p class="product-price" t-esc="product.list_price"></p>
+                            <p class="product-description" t-esc="product.description_sale"></p>
+                            <button 
+                                class="btn btn-primary" 
+                                t-on-click="onAddToCart(product, 1)"
+                            >
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-spinner" t-if="state.loading">
+                <i class="fa fa-spinner fa-spin"></i>
+                Loading...
+            </div>
+            
+            <div class="error-message" t-if="state.error">
+                <div class="alert alert-danger" t-esc="state.error"></div>
+            </div>
+        </div>
+    </template>
+ 
+    <!-- Frontend Shop Template -->
+    <template id="ShopTemplate" name="Rebar Shop Frontend Template">
+        <div class="rebar-shop-frontend">
+            <header class="shop-header">
+                <div class="container">
+                    <h1>Rebar Shop</h1>
+                    <nav class="shop-nav">
+                        <div class="search-box">
+                            <input 
+                                type="text" 
+                                placeholder="Search products..." 
+                                t-on-input="onSearchProducts"
+                                t-model="state.searchTerm"
+                            />
+                        </div>
+                        <div class="category-filter">
+                            <select t-on-change="onCategoryChange">
+                                <option value="">All Categories</option>
+                                <option t-foreach="state.categories" t-as="category" 
+                                        t-key="category.id" t-att-value="category.id"
+                                        t-esc="category.name">
+                                </option>
+                            </select>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+ 
+            <main class="shop-content">
+                <div class="container">
+                    <div class="products-grid" t-if="!state.loading">
+                        <article t-foreach="state.products" t-as="product" 
+                                t-key="product.id" class="product-card">
+                            <div class="product-image">
+                                <img t-att-src="product.image_256" t-att-alt="product.name" />
+                            </div>
+                            <div class="product-details">
+                                <h2 t-esc="product.name"></h2>
+                                <p class="price" t-esc="product.list_price"></p>
+                                <p class="description" t-esc="product.description_sale"></p>
+                                <div class="product-actions">
+                                    <button 
+                                        class="btn btn-primary add-to-cart"
+                                        t-on-click="onAddToCart(product.id, 1)"
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <div class="loading" t-if="state.loading">
+                        <div class="spinner"></div>
+                        <p>Loading products...</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </template>
+ 
+    <!-- Website Integration -->
+    <template id="rebar_shop_page" name="Rebar Shop Page" page="True">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="rebar-shop-app" data-component="rebar_shop_frontend"></div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

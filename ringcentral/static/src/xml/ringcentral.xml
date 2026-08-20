@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="ringcentral.CallRingCentral" owl="1">
+        <a
+            t-att-title="title"
+            t-if="isRingCentralUser"
+            t-on-click="onClick"
+            class="ms-3 d-inline-flex align-items-center o_field_phone_ringcentral btn-link"
+        >
+            <i class="fa fa-phone" />
+            <small class="fw-bold ms-1">Ringcentral</small>
+        </a>
+    </t>
+    <t t-inherit="web.PhoneField" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_phone_content')]//a" position="after">
+            <t t-if="props?.enableButton and props?.value?.length &gt; 0">
+                <CallRingCentral t-props="props" />
+            </t>
+        </xpath>
+    </t>
+    <t t-inherit="web.FormPhoneField" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_phone_content')]" position="inside">
+            <t t-if="props.enableButton and props.record.data[props.name].length > 0">
+                <CallRingCentral t-props="props" />
+            </t>
+        </xpath>
+    </t>
+    <t t-name="ringcentral.PhonecallWidget">
+        <div style="position: absolute;" class="ringcentral_sidebar" id ="ringcentral_sidebar">
+            <video id="remoteVideo" hidden="hidden" autoplay="true"/>
+            <video id="localVideo" hidden="hidden" autoplay="true" muted="muted"/>
+            <div class="slide-menu" id="ringcentral_menu">
+                <div class="loading d-none">Loading&#8230;</div>
+                <ul class="menu-items h-auto">
+                        <li
+                        class="menu-item menu_sign_in_out_li"
+                        title="Sign In"
+                        data-index="0"
+                        t-on-click="login_auth"
+                        >
+                        <button type="button" class=" menu-icon login-auth btn btn-light">
+                        <i class="fa fa-sign-in" />
+                        <i class="fa fa-sign-out d-none" />
+                        </button>
+                        </li>
+                        <li class="menu-item menu_item_li"
+                            data-target="#dialer"
+                            title="Dialer"
+                            t-on-click="load_callLog_on_dialpad"
+                            data-index="1">
+                            <div class="menu-icon">
+                                <i class="fa fa-phone" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Dialer</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                        <li
+                            class="menu-item menu_item_li"
+                            data-target="#compose_message"
+                            t-on-click="load_sent_messages"
+                            title="Compose Message"
+                            data-index="2"
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-comment" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Compose Message</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                        <li
+                            class="menu-item menu_item_li"
+                            data-target="#messages"
+                            title="Messages"
+                            t-on-click="load_sent_messages"
+                            data-index="3"
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-envelope" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Messages</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                        <li
+                            class="menu-item menu_item_li"
+                            data-target="#contacts"
+                            title="Contacts"
+                            data-index="4"
+                            t-on-click= 'render_contacts'
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-user" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Contacts</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                        <li
+                            class="menu-item menu_item_li"
+                            data-target="#call_log"
+                            t-on-click="load_callLog_on_dialpad"
+                            title="Call Log"
+                            data-index="5"
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-history" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Call Log</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                    <!--<li
+                        class="menu-item menu_item_li" data-target="#on_call_dialog" title="On Call
+                        Dialog" data-index="6"><div class="menu-icon"><i class="fa
+                        fa-volume-control-phone" /></div><div class="menu-content"><span>Ongoing
+                        Call</span></div><div class="menu-close"><i class="fa fa-times" /></div></li>-->
+                        <li
+                            class="menu-item menu_item_li"
+                            data-target="#available_extensions"
+                            title="Available Contacts"
+                            t-on-click="render_available_extensions"
+                            data-index="6"
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-users" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Available Agents</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                        <li
+                            class="menu-item menu_item_li "
+                            data-target="#active_calls"
+                            title="Active Call"
+                            data-index="7"
+                            t-on-click="render_active_calls"
+                        >
+                            <div class="menu-icon">
+                                <i class="fa fa-bars" />
+                            </div>
+                            <div class="menu-content">
+                                <span>Active Call</span>
+                            </div>
+                            <div class="menu-close">
+                                <i class="fa fa-times" />
+                            </div>
+                        </li>
+                </ul>
+                <div class="menu-panels " style="background-color:white;">
+                    <div id="dialer" class="menu-panel">
+                        <div class="panel-body">
+                            <div class="row mb8" />
+                            <div class="row mb8">
+                                <div class="col-md-12">
+                                    <div class="ui-widget">
+                                        <select class="form-control combobox" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        t-on-click="dialpad"
+                                        data-number="1"
+                                    >
+                                        1
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        t-on-click="dialpad"
+                                        data-number="2"
+                                    >
+                                        2
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="3"
+                                        t-on-click="dialpad"
+                                    >
+                                        3
+                                        <br />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="4"
+                                        t-on-click="dialpad"
+                                    >
+                                        4
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="5"
+                                        t-on-click="dialpad"
+                                    >
+                                        5
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="6"
+                                        t-on-click="dialpad"
+                                        
+                                    >
+                                        6
+                                        <br />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="7"
+                                        t-on-click="dialpad"
+                                    >
+                                        7
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="8"
+                                        t-on-click="dialpad"
+                                    >
+                                        8
+                                        <br />
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="9"
+                                        t-on-click="dialpad"
+                                    >
+                                        9
+                                        <br />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default btn-circle btn-sm dialpad"
+                                        data-number="0"
+                                        t-on-click="dialpad"
+                                    >0</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div
+                                    class="col-sm-offset-3 col-md-offset-4 col-xs-6 col-sm-4 col-md-4 mx-auto p-3 text-center"
+                                >
+                                    <button
+                                        type="button"
+                                        class="btn btn-success btn-block btn-sm outbound_call w-75"
+                                        title="Call"
+                                        t-on-click="makeCallForm"
+                                    >
+                                        <i class="fa fa-phone" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="flex-nowrap flex-row nav nav-tabs" role="tablist">
+                            <li class="nav-item flex-nowrap cursor-pointer active">
+                                <a
+                                    class="nav-link active"
+                                    href="#dial_missed_calls"
+                                    aria-controls="Missed"
+                                    role="tab"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >Missed</a>
+                            </li>
+                            <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#dial_all_calls"
+                                    aria-controls="all"
+                                    role="tab"
+                                    class="nav-link"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >All</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div
+                                role="tabpanel"
+                                class="tab-pane active"
+                                id="dial_missed_calls">
+                                <MissedCallLogsViews all_calls="state.all_calls" widget="state.widget" record_length="state.record_length" >
+                                </MissedCallLogsViews>
+                            </div>
+                            <div
+                                role="tabpanel"
+                                class="tab-pane"
+                                id="dial_all_calls">
+                            <CallLogsViews all_calls="state.all_calls"  widget="state.widget" record_length="state.record_length">
+                            </CallLogsViews></div>
+
+                        </div>
+                    </div>
+                    <div id="compose_message" class="menu-panel">
+                        <div class="panel-body">
+                            <div id="compose_message_child_1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <!-- <select class="form-control mt16 combobox" /> -->
+                                            <!-- <inputincomingCALL type="text" class="form-control
+                                            combobox"
+                                            placeholder="Enter Name or Number"
+                                            name='msg_to_number'/> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea
+                                                class="form-control"
+                                                placeholder="Type any text to send"
+                                                id="msg_text"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input
+                                                type="file"
+                                                class=""
+                                                placeholder="Type any text to send"
+                                                id="msg_image"
+                                                multiple="True"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb4">
+                                    <div
+                                        class="col-sm-offset-3 col-md-offset-3 col-xs-6 col-sm-6 col-md-6 mx-auto text-center p-2"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="btn btn-success btn-block send_msg col-6"
+                                            title="Message"
+                                            t-on-click="send_msg"
+                                        >
+                                            <i class="fa fa-envelope" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb4 sent_text_messages_in_compose" >
+                                <MessagePartner all_messages = "state.all_messages" openChatBox.bind="openChatBox"> 
+                                </MessagePartner>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="on_call_dialog" class="menu-panel"><div class="panel-body"><div
+                    class="row mb8"></div></div></div>-->
+                    <div id="messages" class="menu-panel">
+                        <div class="text-center">
+                            <MessagePartner all_messages = "state.all_messages" openChatBox.bind="openChatBox"> 
+                            </MessagePartner>
+                        </div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="all">
+                                <div class="text-center">
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="voice">
+                                <div class="text-center">No Voice Messages</div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="fax">
+                                <div class="text-center">No Fax Messages</div>
+                            </div>
+                            <div
+                                role="tabpanel"
+                                class="tab-pane"
+                                id="sent_text_messages"
+                            >
+                                <div class="text-center">
+                                    <MessagePartner all_messages = "state.all_messages" openChatBox.bind="openChatBox"> 
+                                    </MessagePartner>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contacts" class="menu-panel" t-on-click="render_contacts">
+                        <Contacts  partners_list ='state.partners_list' onClickDial.bind="dial_call_contact_detail" onSearchContact.bind ="contact_search" input_value="input_value" partners_customer = "state.partners_customer" partners_suppliers = 'state.partners_suppliers'>
+                        </Contacts>
+                    </div>
+                    <div id="call_log" class="menu-panel">
+                        <ul class="flex-nowrap flex-row nav nav-tabs" role="tablist">
+                           <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#missed_calls"
+                                    aria-controls="Missed"
+                                    role="tab"
+                                    class="nav-link active"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >Missed</a>
+                            </li>
+                            <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#all_calls"
+                                    aria-controls="all"
+                                    role="tab"
+                                    class="nav-link"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >All</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div
+                                role="tabpanel"
+                                class="tab-pane active"
+                                id="missed_calls"
+                            > <MissedCallLogsViews all_calls="state.all_calls" widget="state.widget" record_length="state.record_length">
+                            </MissedCallLogsViews>
+                        </div>
+                            <div
+                                role="tabpanel"
+                                class="tab-pane"
+                                id="all_calls"
+                            > <CallLogsViews all_calls="state.all_calls" widget="state.widget" record_length="state.record_length">
+                            </CallLogsViews></div>
+                        </div>
+                    </div>
+                    <div id="available_extensions" class="menu-panel" >
+                        <div class="pt8 pb8">
+                            <AvailableExtensions widget='state.render_available_extensions' available_extensions = "state.available_extensions">
+                            </AvailableExtensions>
+                        </div>
+                    </div>
+                    <div id="active_calls" class="menu-panel">
+                        <div class="pt8 pb8">
+                           <ActiveCall  widget="state.activecalls" active_call_list= "state.active_calls_list" onClicklisten.bind="listen_active_call">
+                           </ActiveCall>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ring_central_panel_container" class="d-none" style="position: fixed;bottom: 0%;z-index: 99999;right: 0px;">
+                <img
+                    src="/ringcentral/static/src/img/Ringcentral-logo.png"
+                    class="in_webinar_navigation"
+                    style="height: 55px;width: 55px;background: #fff;border: solid 2px white;"
+                />
+            </div>
+        </div>
+        <!-- <div id="ring_central_panel_container" style="position: fixed;bottom: 0%;z-index:
+        999;right: 0px;"><img src="/ringcentral/static/src/img/Ringcentral-logo.png"
+        class="in_webinar_navigation" style="height: 50px;width: 50px;background: #fff;border: solid
+        3px #5eadcb;"></img></div>-->
+    </t>
+</templates>

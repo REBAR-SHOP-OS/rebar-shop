@@ -1,0 +1,65 @@
+<templates>
+    <t t-name="ringcentral.active.call">
+        <span class="fetching-header-active d-none" style="font-style: oblique;">Fetching Active Calls, Please wait....</span>
+        <i class="fa fa-refresh active-call" style="float: right;" t-on-click="render_active_calls"/>
+        <h3 class="active-call-header">Active Call Loading.....</h3>
+        <div
+            class="mt8"
+            id="show_active_calls"
+            style="overflow-y: auto;max-height: 550px;overflow-x: hidden;"
+        >
+            <table class="table table-hover">
+                <t t-if="this.props.active_call_list">
+                    <tr t-foreach="this.props.active_call_list" t-as="active_call"
+                        t-key="active_call_index">
+                        <t t-set="to_number" t-value="active_call[&quot;to&quot;].phoneNumber" />
+                        <td
+                            style="cursor: pointer;"
+                            class="active_call_details"
+                            t-on-click="(e) => props.onClicklisten(e,to_number)"
+                            t-att-data-partner_from_phone="active_call[&quot;from&quot;].phoneNumber"
+                            t-att-data-partner_to_phone="active_call[&quot;to&quot;].phoneNumber"
+                            t-att-data-result="active_call[&quot;result&quot;]"
+                            t-att-data-sessionId="active_call[&quot;sessionId&quot;]"
+                            t-att-data-type="active_call[&quot;type&quot;]"
+                        >
+                            <div class="row">
+                                <div class="col-md-12"> From : <t
+                                        t-esc="active_call[&quot;from&quot;].phoneNumber" />
+                            <t
+                                        t-if="active_call['from'].extensionNumber"
+                                        t-esc="active_call[&quot;from&quot;].extensionNumber"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"> To : <t
+                                        t-if="active_call['to'].phoneNumber"
+                                        t-esc="active_call[&quot;to&quot;].phoneNumber"
+                                    />
+                            <t
+                                        t-if="active_call['to'].extensionNumber"
+                                        t-esc="active_call[&quot;to&quot;].extensionNumber"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div
+                                    t-if="active_call[&quot;result&quot;]"
+                                    class="col-md-12"
+                                > Status : <t
+                                        t-esc="active_call[&quot;result&quot;]" />
+                            <i
+                                        t-if="active_call[&quot;result&quot;]==&quot;In Progress&quot;"
+                                        class="fa fa-phone-square"
+                                        style="color:green;"
+                                    />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+        </div>
+    </t>
+</templates>

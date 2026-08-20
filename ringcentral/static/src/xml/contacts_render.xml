@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="ringcentral.contacts">
+        <div class="mt8" id="show_contacts">
+            <div class="row mt8 mb8">
+                <div class="col-md-12">
+                    <input
+                        class="form-control"
+                        id="contact_search"
+                        name="search"
+                        placeholder="Search..."
+                        t-att-value="props.input_value"
+                        t-on-input="(e) => this.props.onSearchContact(e)"
+                    />
+                </div>
+            </div>
+            <ul class="flex-nowrap flex-row nav nav-tabs" role="tablist">
+                <li class="nav-item flex-nowrap cursor-pointer">
+                    <a
+                        class="nav-link active"
+                        href="#partners_panel"
+                        role="tab"
+                        tabindex="-1"
+                        name="partners_panel"
+                    >All</a>
+                </li>
+                <li class="nav-item flex-nowrap cursor-pointer">
+                    <a
+                        href="#partners_customer_panel"
+                        role="tab"
+                        class="nav-link "
+                        tabindex="-1"
+                        data-bs-toggle="tab"
+                        name="partners_customer_panel"
+                    >Customers</a>
+                </li>
+                <li class="nav-item flex-nowrap cursor-pointer">
+                    <a  
+                        href="#partners_suppliers_panel"
+                        aria-controls="partners_suppliers_panel"
+                        role="tab"
+                        class="nav-link"
+                        tabindex="-1"
+                        data-bs-toggle="tab"
+                    >Suppliers</a>
+                </li>
+                </ul>
+                <div class="tab-content" id ="contacts">
+                    <div role="tabpanel" class="tab-pane active" id="partners_panel">
+                    <t t-if ="props.partners_list">
+                        <table class="table table-hover">
+                            <t t-foreach="props.partners_list" t-as="partner" t-key="partner_index">
+                                <tr>
+                                    <td>
+                                        <t t-if="partner['image_128']">
+                                            <img
+                                                t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                                style="width: 64px; height: 64px; object-fit: contain;"
+                                            />
+                                        </t>
+                                        <t t-if="!partner['image_128']">
+                                            <img
+                                                t-on-click.stop.prevent="(ev) => this.show_partner_details(ev,partner)"
+                                                t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                                style="padding:0%;width: 64px; height: 64px; object-fit: contain;"
+                                            />
+                                        </t>
+                                    </td>
+                                    <td
+                                        style="cursor: pointer;"
+                                        class="partner_details"
+                                        t-on-click.stop.prevent="(ev) => this.show_partner_details(ev,partner)"
+                                        t-attf-data-partner_image="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                        t-att-data-partner_email="partner[&quot;email&quot;]"
+                                        t-att-data-partner_name="partner[&quot;name&quot;]"
+                                        t-att-data-partner_phone="partner[&quot;phone&quot;]"
+                                    >
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <t t-esc="partner[&quot;name&quot;]" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <t t-if="partner[&quot;phone&quot;]">
+                                                    <t t-esc="partner[&quot;phone&quot;]" />
+                                                </t>
+                                            </div>
+                                            <t t-if="partner[&quot;mobile&quot;]">
+                                                <div class="col-md-12">
+                                                    <t
+                                                        t-esc="partner[&quot;mobile&quot;]"
+                                                    />
+                                                </div>
+                                            </t>
+                                            <t t-if="partner[&quot;email&quot;]">
+                                                <div class="col-md-12">
+                                                    <t t-esc="partner[&quot;email&quot;]" />
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+                </div>
+                <div t-if="props.partners_customer" role="tabpanel"  class="tab-pane" id="partners_customer_panel">
+                <t t-if="props.partners_customer">
+                    <table class="table table-hover">
+                        <t t-foreach="props.partners_customer" t-as="partner" t-key="partner_index">
+                            <tr>
+                                <td>
+                                    <t t-if="partner['image_128']">
+                                        <img
+                                            t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                            style="width: 64px; height: 64px; object-fit: contain;"
+                                        />
+                                    </t>
+                                    <t t-if="!partner['image_128']">
+                                        <img
+                                            t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                            style="width: 64px; height: 64px; object-fit: contain;"
+                                        />
+                                    </t>
+                                </td>
+                                <td
+                                    style="cursor: pointer;"
+                                    class="partner_details"
+                                    t-on-click="show_partner_details"
+                                    t-att-data-partner_image="partner[&quot;image_128&quot;]"
+                                    t-att-data-partner_email="partner[&quot;email&quot;]"
+                                    t-att-data-partner_name="partner[&quot;name&quot;]"
+                                    t-att-data-partner_phone="partner[&quot;phone&quot;]"
+                                >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <t t-esc="partner[&quot;name&quot;]" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <t t-if="partner[&quot;phone&quot;]">
+                                                <t t-esc="partner[&quot;phone&quot;]" />
+                                            </t>
+                                        </div>
+                                        <t t-if="partner[&quot;mobile&quot;]">
+                                            <div class="col-md-12">
+                                                <t
+                                                    t-esc="partner[&quot;mobile&quot;]"
+                                                />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    </t>
+                </div>
+                <div
+                    t-if="props.partners_suppliers"
+                    role="tabpanel"
+                    class="tab-pane"
+                    id="partners_suppliers_panel"
+                >
+                <t t-if="props.partners_suppliers">
+                    <table class="table table-hover">
+                        <t t-foreach="props.partners_suppliers" t-as="partner" t-key="partner_index">
+                            <tr>
+                                <td>
+                                    <t t-if="partner['image_128']">
+                                        <img
+                                            t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                            style="width: 64px; height: 64px; object-fit: contain;"
+                                        />
+                                    </t>
+                                    <t t-if="!partner['image_128']">
+                                        <img
+                                            t-attf-src="/web/image/res.partner/{{ partner.id }}/avatar_128"
+                                            style="width: 64px; height: 64px; object-fit: contain;"
+                                        />
+                                    </t>
+                                </td>
+                                <td
+                                    style="cursor: pointer;"
+                                    class="partner_details"
+                                    t-on-click="show_partner_details"
+                                    t-att-data-partner_image="partner[&quot;image_128&quot;]"
+                                    t-att-data-partner_email="partner[&quot;email&quot;]"
+                                    t-att-data-partner_name="partner[&quot;name&quot;]"
+                                    t-att-data-partner_phone="partner[&quot;phone&quot;]"
+                                >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <t t-esc="partner[&quot;name&quot;]" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <t t-if="partner[&quot;phone&quot;]">
+                                                <t t-esc="partner[&quot;phone&quot;]" />
+                                            </t>
+                                        </div>
+                                        <t t-if="partner[&quot;mobile&quot;]">
+                                            <div class="col-md-12">
+                                                <t
+                                                    t-esc="partner[&quot;mobile&quot;]"
+                                                />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    </t>
+                </div>
+            </div>
+        </div>
+        <div class ="contact_data d-none">
+            <t t-if ="state.partner_data">
+                <div class="row mt8 mb8">
+                    <div class="col-md-12">
+                        <div class="pull-left">
+                            <a class="show_partners" t-on-click="backtoMain">
+                                <i class="fa fa-arrow-left" aria-hidden="true" />
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <b>Contact Details</b>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row mt8 mb8">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <t t-if="image_128">
+                            <img
+                                class="img img-responsive"
+                                width="50"
+                                height="50"
+                                t-att-src="image_128"
+                            />
+                        </t>
+                        <t t-if="!image_128">
+                            <img
+                            t-attf-src="/web/image/res.partner/{{ state.partner_data.id }}/avatar_128"
+                            style="width: 64px; height: 64px; object-fit: contain;"
+                        />
+                        </t>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+                        <t t-esc="state.partner_data.name" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row mt8 mb8 d-none">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <b>Activity</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt8 mb8 d-none">
+                    <div class="col-md-12">
+                        <!-- Nav tabs -->
+                        <ul class="flex-nowrap flex-row nav nav-tabs" role="tablist">
+                           <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#partner_emails"
+                                    aria-controls="emails"
+                                    role="tab"
+                                    class="nav-link active"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >
+                                    <i class="fa fa-envelope" />
+                                </a>
+                            </li>
+                            <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#partner_voice"
+                                    aria-controls="voice"
+                                    role="tab"
+                                    class="nav-link"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >
+                                    <i class="fa fa-phone" />
+                                </a>
+                            </li>
+                            <li class="nav-item flex-nowrap cursor-pointer">
+                                <a
+                                    href="#partner_fax"
+                                    aria-controls="fax"
+                                    role="tab"
+                                    class="nav-link"
+                                    tabindex="-1"
+                                    data-toggle="tab"
+                                >
+                                    <i class="fa fa-fax" />
+                                </a>
+                            </li>
+                            <li class="nav-item flex-nowrap cursor-pointer">
+                                <a  href="#partner_text"
+                                    aria-controls="text"
+                                    role="tab"
+                                    class="nav-link"
+                                    tabindex="-1"
+                                    data-toggle="tab">
+                                <i class="fa fa-comment" />
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="partner_emails">
+                                <p t-if="state.partner_data.email" class="text-center p-3"><span
+                                        t-esc="state.partner_data.email"
+                                    /></p>
+                                <div t-else="" class="text-center p-3">No Recent E-Mails</div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="partner_voice">
+                                <div class="text-center p-3">No Voice Messages</div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="partner_fax">
+                                <div class="text-center p-3">No Fax Messages</div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="partner_text">
+                                <div class="text-center p-3">No Recent Calls</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <t t-if="state.partner_data.email">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>Email Address</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            E-Mail
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <t t-esc="state.partner_data.email" />
+                        </div>
+                    </div>
+                    <hr />
+                </t>
+                <div class="row">
+                    <div class="col-md-12">
+                        <b>Phone Number</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        Mobile
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <t t-esc="state.partner_data.phone" />
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <a
+                            t-att-data-phone_number="phone"
+                            class="dial_call_contact_detail p-2 border"
+                            href="#"
+                            t-on-click="(e) => this.props.onClickDial(e,state.partner_data)"
+                        >
+                            <i class="fa fa-phone" />
+                        </a>
+                        <!-- <a href='#' class='send_message_contact_detail'><i class="fa
+                        fa-comment"
+                        aria-hidden="true"></i></a> -->
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="payment_provider_form_qbpayments" model="ir.ui.view">
+        <field name="name">provider.form.qbpayments</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form" />
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position='inside'>
+                <group invisible="code != 'qbpayments'">
+                    <field name="client_id" string="Client ID" />
+                    <field
+                        name="client_secret"
+                        password="True"
+                        string="Client Secret"
+                    />
+                    <field name="auth_code" string="Authorization Code" />
+                    <field name="realm_id" string="Realm ID" />
+                    <field name="access_token" string="Access Token" />
+                    <field name="refresh_token" string="Refresh Token" />
+
+                    <a
+                        colspan="2"
+                        href="https://developer.intuit.com/app/developer/playground"
+                        target="_blank"
+                    >
+                        How to configure your QuickBooks Payment Authorization Code and Tokens?
+                    </a>
+
+                    <a
+                        colspan="2"
+                        href="https://quickbooks.intuit.com/payments/"
+                        target="_blank"
+                    >
+                        How to configure your QuickBooks Payment account?
+                    </a>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

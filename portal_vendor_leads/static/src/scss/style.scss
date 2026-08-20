@@ -1,0 +1,28 @@
+.o_portal_chatter_composer_body{
+    #taggingTextarea {
+        width: 100%;
+        height: 100px;
+        padding: 8px;
+    }
+    
+    .tag-dropdown {
+          position: absolute;
+          bottom: 100%;
+          color: #fff;
+        left: 0;
+        width: 300px;
+        border: 1px solid #ccc;
+        z-index: 10;
+        border-radius: 5px;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    .dropdown-item{
+        color: #fff;
+    }
+    .dropdown-item:hover{
+        color: black;
+    }
+}

@@ -1,0 +1,47 @@
+<odoo>
+    <t t-name="ringcentral.available.extensions">
+        <span class="fetching-header d-none">Fetching Available Extensions Please wait....</span>
+        <i class="fa fa-refresh render_available_extensions " t-on-click="render_available_extensions" style="float:right;margin-right:0%;margin-top:0%"></i>
+        <h4 class="available-extension-header">Loading Available Agents</h4>
+        <div
+            class="mt8"
+            id="show_contacts"
+            style="overflow-y: auto;max-height: 550px;overflow-x: hidden;"
+        >
+            <table class="table table-hover">
+                <t t-if="this.props.available_extensions">
+                    <tr t-foreach="this.props.available_extensions" t-as="extension" t-key="extension_index">
+                        <td
+                            style="cursor: pointer;"
+                            class="extensions_details"
+                            t-att-data-partner_email="extension[&quot;id&quot;]"
+                            t-att-data-partner_name="extension[&quot;label&quot;]"
+                            t-att-data-partner_phone="extension[&quot;phoneNumber&quot;]"
+                        >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <t t-esc="extension[&quot;label&quot;]" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div
+                                    t-if="extension.extension[&quot;extensionNumber&quot;]"
+                                    class="col-md-12"
+                                >
+                                    <t
+                                        t-esc="extension.extension[&quot;extensionNumber&quot;]"
+                                    />
+                                    <span>-</span>
+                                    <t t-esc="extension[&quot;presenceStatus&quot;]" />
+                                </div>
+                                <!--<t
+                            t-if='extension["id"]'><div class='col-md-12'>
+                                Id :     <t t-esc='extension["id"]' /></div></t>-->
+                            </div>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+        </div>
+    </t>
+</odoo>

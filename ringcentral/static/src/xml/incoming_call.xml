@@ -1,0 +1,78 @@
+<templates>
+    <t t-name="ringcentral.incoming_call">
+        <div id="incoming_call_dialog">
+            <Dialog title="props.from_name" size="'sm'" fullscreen="true" footer="false"
+                contentClass="'o-mail-FollowerSubtypeDialog'" closeOnClick="false"
+                secondaryClick="props.close">
+                <t t-set-slot="header">
+                    <t t-if="!props.partner_exists">
+                        <button t-on-click="createPartner"
+                            class="btn btn-primary btn-sm btn-create-contact"
+                            style="float-right"
+                            title="Create New Contact">
+                            <i class="fa fa-user-plus" />
+                        </button>
+                    </t>
+                    <span id="title_dialog" style="font-style: normal;font-weight: bold;">
+                        <t t-esc="props.title" />
+                    </span>
+                    <i t-on-click="props.close" class="fa fa-close" style="padding-left: 5%;"></i>
+                </t>
+                <div class="row">
+                    <div class="col-md-12">
+                        <t t-if="from_name" t-esc="from_name" />
+                        <t t-esc="from_number" />
+                    </div>
+                    <div class="col-md-12" style="height: 200px;overflow: auto;">
+                        <form class="form-inline forward-form">
+                            <div class="input-group select_folder_name mt8">
+                                <input
+                                    type="text"
+                                    class="form-control input-sm"
+                                    name="forward"
+                                    placeholder="Forward To"
+                                />
+                                <span class="input-group-btn">
+                                    <button
+                                        class="btn btn-primary input-sm"
+                                        style="font-size: 12px;"
+                                        type="buttton"
+                                        t-on-click="(ev) => this.forwardForm(ev)"
+                                    >Forward</button>
+                                </span>
+                            </div>
+                        </form>
+                        <table class="table" id="phone_table_list">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Phone
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="props.table_list" t-as="rec" t-key="rec_index">
+                                    <t t-set="id" t-value="rec_index" />
+                                    <tr t-on-click="(e) => props.openWindow(rec_index)">
+
+                                        <td> [<span t-out="rec.name" />] </td>
+                                        <td>
+                                            <span t-out="rec.phone" />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 mt4">
+                        <button class="btn btn-success answer" style="margin-right: 11px;" t-on-click="answer">Answer</button>
+                        <button class="btn btn-danger decline" t-on-click="decline">Decline</button>
+                    </div>
+                </div>
+            </Dialog>
+        </div>
+    </t>
+</templates>

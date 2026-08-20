@@ -1,0 +1,51 @@
+<odoo noupdate="1">
+
+    <record id="payment_method_qbpayments" model="payment.method">
+        <field name="name">QuickBooks Payment</field>
+        <field name="code">qbpayments</field>
+        <field name="sequence">1000</field>
+        <field name="active">True</field>
+        <field
+            name="image"
+            type="base64"
+            file="quickbooks_payment_scs/static/src/img/qbpayments.png"
+        />
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund">partial</field>
+    </record>
+
+    <record id="payment_provider_qbpayments" model="payment.provider">
+        <field name="name">QuickBooks Payment</field>
+        <field
+            name="image_128"
+            type="base64"
+            file="quickbooks_payment_scs/static/src/img/qbpayments.png"
+        />
+        <field name="module_id" ref="base.module_quickbooks_payment_scs" />
+        <field name="code">qbpayments</field>
+        <field
+            name="pre_msg"
+        ><![CDATA[
+            <p>You will be redirected to the QuickBooks Payment website after clicking on the payment button.</p>]]>
+        </field>
+        <field
+            name="payment_method_ids"
+            eval="[(6, 0, [
+                ref('payment_method_qbpayments'),
+            ])]"
+        />
+    </record>
+
+    <record id="ir_cron_automatically_generate_refresh_token" model="ir.cron">
+        <field name="name">QuickBooks Payment: Automatically Generate Refresh Token</field>
+        <field name="model_id" ref="payment.model_payment_provider"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_automatically_generate_refresh_token()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">10</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+/env/
+/*.conf
+__pycache__
+.env
+node_modules/
+dist/
+*.pyc
+.trash/

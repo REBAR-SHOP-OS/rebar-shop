@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ringcentral.outgoing_call">
+        <div class="row">  
+            <div id="outgoingCall">
+                <Dialog title="props.title" size="'sm'" fullscreen="true" contentClass="props.contentClass" closeOnClick="false"  secondaryClick="props.close">
+                        <div id="headerdialog">
+                            <t t-set-slot="header">
+                                <i id="maximize" t-on-click="maximize" class="fa fa-window-maximize d-none" aria-hidden="true" style="padding-right: 5%;"></i>
+                                <i  id="minimize" t-on-click="Minimize" class="fa fa-window-minimize" aria-hidden="true" style="padding-right: 5%;"></i>
+                                <span id="title_dialog" style="font-style: normal;font-weight: bold;"><t t-esc="props.title"/></span>
+                                <i t-on-click="props.close" class="fa fa-close" style="padding-left: 5%;"></i>
+                            </t>
+                        </div>
+                        <div class="row" >
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="btn-group">
+                                <button class="btn btn-default mute btn-sm" title="Mute">
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/mute.png"
+                                                t-on-click="(ev) => this.mute(ev)"
+                                            />
+                                        </button>
+                                        <button class="btn btn-default unmute btn-sm d-none" title="unmute">
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/unmute.png"
+                                                t-on-click="(ev) => this.unmute(ev)"
+                                            />
+                                        </button>
+                                    </span>
+                                    <span class="btn-group">
+                                        <button class="btn btn-default hold btn-sm" title="Hold">
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/pause.png"
+                                                t-on-click="(ev) => this.hold(ev)"
+                                            />
+                                        </button>
+                                        <button
+                                            class="btn btn-default unhold btn-sm d-none"
+                                            title="Unhold"
+                                        >
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/play.png"
+                                                t-on-click="(ev) => this.unhold(ev)"
+                                            />
+                                        </button>
+                                    </span>
+                                    <span class="btn-group">
+                                        <button
+                                            class="btn btn-default startRecord btn-sm"
+                                            title="Start Recording"
+                                        >
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/start_recording.png"
+                                                t-on-click="(ev) => this.startRecord(ev)"
+                                            />
+                                        </button>
+                                        <button
+                                            class="btn btn-default stopRecord btn-sm d-none"
+                                            title="Stop Recording"
+                                        >
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/stop_recording.png"
+                                                t-on-click="(ev) => this.stopRecord(ev)"
+                                            />
+                                        </button>
+                                    </span>
+                                    <span class="btn-group">
+                                        <button
+                                            class="btn btn-default park btn-sm park"
+                                            title="Park"
+                                        >
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/park.png"
+                                                t-on-click="(ev) => this.park(ev)"
+                                            />
+                                        </button>
+                                    </span>
+                                    <span class="btn-group">
+                                        <button class="btn btn-danger btn-sm hangup" title="Hangup">
+                                            <img
+                                                class="img img-responsive"
+                                                width="15"
+                                                height="15"
+                                                src="/ringcentral/static/src/img/hangup.png"
+                                                t-on-click="(ev) => this.hangup(ev)"
+                                            />
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul class="flex-row nav nav-tabs" role="tablist">
+                                <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a
+                                        data-target="#flip"
+                                        href="#flip"
+                                        aria-controls="flip"
+                                        role="tab"
+                                        class="nav-link"
+                                        tabindex="-1"
+                                        data-bs-toggle="tab"
+                                    >Flip</a>
+                                </li>
+                                <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a
+                                        data-target="#transfer"
+                                        href="#transfer"
+                                        aria-controls="transfer"
+                                        role="tab"
+                                        class="nav-link"
+                                        tabindex="-1"
+                                        data-bs-toggle="tab"
+                                    >Transfer</a>
+                                </li>
+                                <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a
+                                        data-target="#dtmf"
+                                        href="#dtmf" 
+                                        aria-controls="dtmf"
+                                        role="tab"
+                                        class="nav-link"
+                                        tabindex="-1"
+                                        data-bs-toggle="tab"
+                                    >DTMF</a>
+                                </li>
+                                <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a
+                                        href="#customer" 
+                                        data-target="#customer"
+                                        aria-controls="fax"
+                                        role="tab"
+                                        class="nav-link"
+                                        tabindex="-1"
+                                        data-bs-toggle="tab"
+                                    >Details</a>
+                                </li>
+                                    <!-- <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a href="#customer" aria-controls="fax" role="tab" class="nav-link" tabindex="-1" data-toggle="tab"
+                                        title="Open Contact Details">OCD</a>
+                                </li> -->
+                                <li class="nav-item flex-nowrap cursor-pointer">
+                                    <a
+                                        href="#available_agents_tab" 
+                                        aria-selected="true"
+                                        data-target="#available_agents_tab"
+                                        aria-controls="available_agents_tab"
+                                        role="tab"
+                                        class="nav-link available_agents_link"
+                                        tabindex="-1"
+                                        data-bs-toggle="tab"
+                                    >Available Agents</a>
+                                </li>
+                            </ul>
+                                <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flip">
+                                    <div class="text-center">
+                                        <form class="form-inline flip-form">
+                                            <div class="input-group select_folder_name mt8">
+                                                <input
+                                                    type="text"
+                                                    class="form-control input-sm"
+                                                    name="flip"
+                                                    placeholder="1 ... 8"
+                                                />
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        style="font-size: 12px;"
+                                                        type="button"
+                                                        t-on-click="(ev) => this.flipForm(ev)"
+                                                    >Flip</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="transfer">
+                                    <div class="text-center">
+                                        <form class="form-inline transfer-form">
+                                            <div class="input-group select_folder_name mt8">
+                                                <input
+                                                    type="text"
+                                                    class="form-control input-sm"
+                                                    name="transfer"
+                                                    placeholder="+12345678900"
+                                                />
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        style="font-size: 12px;"
+                                                        type="button"
+                                                        t-on-click="(ev) => this.transferForm(ev)"
+                                                    >Transfer</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="dtmf">
+                                    <div class="text-center">
+                                        <form class="form-inline dtmf-form">
+                                            <div class="input-group select_folder_name mt8">
+                                                <input
+                                                    type="text"
+                                                    class="form-control input-sm"
+                                                    name="dtmf"
+                                                    placeholder="1 ..."
+                                                />
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        style="font-size: 12px;"
+                                                        type="button"
+                                                        t-on-click="(ev) => this.dtmfForm(ev)"
+                                                    >Send</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="available_agents_tab">
+                                    <div class="text-center">
+                                        <form class="form-inline active-agents-transfer-form">
+                                            <div class="input-group select_folder_name mt8">
+                                                    <!--<input
+                                                type="text" class="form-control input-sm available_agents"
+                                                name="available_agents" id="available_agents"
+                                                placeholder="+12345678900" />-->
+                                                <select name="available_agents" class="form-control available_agents" style="height: initial;">
+                                                    <option value="">- select -</option>
+                                                    <t t-foreach="props.agent_options" t-as="agent" t-key="agent_index">
+                                                        <option t-att-value="agent.extension.extensionNumber"><t t-esc="agent.extension.extensionNumber"/></option>
+                                                    </t>
+                                                </select>
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        style="font-size: 12px;"
+                                                        type="button"
+                                                        t-on-click="(ev) => this.activeAgentTransfer(ev)"
+                                                    >Transfer</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="customer">
+                                    <div class="col-md-12" style="height: 150px;overflow: auto;" >
+                                        <table class="table" id="phone_table_list" >
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Phone
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="props.table_data" t-as="rec" t-key="rec_index">
+                                                    <t t-set="id" t-value="rec_index"/>
+                                                    <tr t-on-click="(e) => props.openWindow(rec_index)">
+
+                                                        <td>    
+                                                            [<span t-out="rec.name"/>]
+                                                        </td>
+                                                        <td>
+                                                            <span t-out="rec.phone"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row mt4 mb4">
+                                <div class="col-md-12">
+                                    <select class="form-control" name="phonecall_about">
+                                        <option value="">Phonecall About</option>
+                                        <t t-if="state.phonecall_about">
+                                            <t t-foreach="state.phonecall_about" t-as="rec" t-key="rec_index">
+                                                <option t-att-value="rec[&quot;id&quot;]">
+                                                    <t t-esc="rec[&quot;name&quot;]" />
+                                                </option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <pre class="info" />
+                            <textarea id="description" class="form-control" placeholder="Notes" />
+                        </div>
+                        </div>
+                        <t t-set-slot="footer">
+                            <t t-if="!props.partner_exits">
+                                <span style="margin-left: 19%;">Create a new Contact</span>
+                                <button class="btn btn-primary btn-sm btn-create-contact" title="Create New Contact" t-on-click="(ev) => props.createPartner(ev)"><i class="fa fa-user-plus"/></button>
+                            </t>
+                        </t>
+                </Dialog>
+            </div>
+        </div>
+    </t>
+</templates>

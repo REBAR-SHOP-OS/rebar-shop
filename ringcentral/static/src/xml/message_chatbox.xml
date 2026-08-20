@@ -1,0 +1,135 @@
+<templates>
+    <t t-name="ringcentral.chatbox">
+        <div id="chatbox">
+            <Dialog title="props.title" fullscreen="true"
+                bodyClass="'d-flex flex-column'" contentClass="'o-chatbox-dialogbox'" size="'md'"
+                closeOnClick="true"
+                secondaryClick="props.close">
+                <div id="headerdialog">
+                    <t t-set-slot="header">
+                        <i id="maximize" t-on-click="maximize" class="fa fa-window-maximize d-none"
+                            aria-hidden="true" style="padding-right: 5%;"></i>
+                        <i id="minimize" t-on-click="Minimize" class="fa fa-window-minimize"
+                            aria-hidden="true" style="padding-right: 5%;"></i>
+                        <span id="title_dialog"
+                            style="font-style: normal;font-weight: bold;margin-left: 0%;">
+                            <t t-esc="props.title" />
+                            <i class="fa fa-info-circle" style="margin-left:10px"
+                                t-on-click="(ev)=>this.contactinfo(ev,props.title,props.phoneNumber)"
+                                aria-hidden="true"></i>
+                        </span>
+                        <i t-on-click="props.close" class="fa fa-close" style="padding-left: 5%;"></i>
+                    </t>
+                </div>
+                <div class="modal-body" id="scroll_messge" style="height:500px;">
+                    <div style="display:none !important;">
+                        <t t-esc="props.phoneNumber" class="phoneNumber" />
+                    </div>
+                    <div id="messgae_contant">
+                        <t t-foreach="props.messages" t-as="message" t-key="message_index">
+                            <t t-if="message.direction == 'Outbound'">
+                                <t t-foreach="message.to" t-as="to_phone_number"
+                                    t-key="to_phone_number_index">
+                                    <t t-if="to_phone_number.partner_name">
+                                        <div class="d-flex justify-content-end mb-4">
+                                            <div class="msg_cotainer_send" style="background:aquamarine;">
+                                                <t t-esc="message.subject" />
+                                                <br />
+                                                <span class="msg_time_send">
+                                                    <t t-esc="message.datetime" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <t t-foreach="message.attachments" t-as="attchment"
+                                            t-key="attchment_index">
+                                            <t t-if="attchment.type == 'MmsAttachment'">
+                                                <t
+                                                    t-set="uri"
+                                                    t-value="attchment.uri+'?access_token='+ props.widget.access_token"
+                                                />
+                                                <div class="d-flex justify-content-end mb-4">
+                                                    <div class="msg_img_cotainer_send">
+                                                        <img
+                                                            t-att-src="uri"
+                                                            class="img-responsive msg_img"
+                                                            style="width:30%; height:20%"
+                                                        />
+                                                        <br />
+                                                        <br />
+                                                        <span class="msg_time_send">
+                                                            <t t-esc="message.datetime" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                            <t
+                                t-if="message.direction == 'Inbound'"
+                            >
+                                <div class="d-flex justify-content-start mb-4">
+                                    <div class="msg_cotainer">
+                                        <t t-esc="message.subject" />
+                                        <span class="msg_time">
+                                            <t t-esc="message.datetime" />
+                                        </span>
+                                    </div>
+                                    <br />
+                                </div>
+                                <t t-foreach="message.attachments" t-as="attchment"
+                                    t-key="attchment_index">
+                                    <t t-if="attchment.type == 'MmsAttachment'">
+                                        <t
+                                            t-set="uri"
+                                            t-value="attchment.uri+'?access_token='+props.widget.access_token"
+                                        />
+                                        <div class="d-flex justify-content-start mb-4">
+                                            <div class="msg_img_cotainer">
+                                                <img
+                                                    t-att-src="uri"
+                                                    class="img-responsive msg_img"
+                                                    style="width:30%; height:20%"
+                                                />
+                                                <br />
+                                                <span class="msg_time">
+                                                    <t t-esc="message.datetime" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                    <div id="sorll_div" />
+                    <t t-set-slot="footer">
+                        <input
+                            style="width:87%;"
+                            type="text"
+                            id="popup_input"
+                            name="message"
+                            class="form-control"
+                            t-on-keydown="onKeydownInput"
+                            placeholder="Type your message..."
+                        />
+                        <label class="btn btn-success">
+                            <input
+                                type="file"
+                                style="display:none;"
+                                id="popup_file"
+                                multiple="True"
+                            />
+                            <i class="fa fa-paperclip" title="Attach File" />
+                        </label>
+                        <button title="Send Msg" class="btn btn-primary"
+                            t-on-click="(e) => this.confirm(e)">
+                            <i class="fa fa-paper-plane-o" />
+                        </button>
+                    </t>
+                </div>
+            </Dialog>
+        </div>
+    </t>
+</templates>

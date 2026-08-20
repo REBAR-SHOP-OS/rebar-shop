@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rebar_product_user,rebar.product.user,model_product_product,base.group_user,1,0,0,0
+access_rebar_product_manager,rebar.product.manager,model_product_product,base.group_system,1,1,1,1
+access_rebar_category_user,rebar.category.user,model_product_category,base.group_user,1,0,0,0
+access_rebar_category_manager,rebar.category.manager,model_product_category,base.group_system,1,1,1,1
+access_rebar_sale_order_user,rebar.sale.order.user,model_sale_order,base.group_user,1,1,1,0
+access_rebar_sale_order_line_user,rebar.sale.order.line.user,model_sale_order_line,base.group_user,1,1,1,0

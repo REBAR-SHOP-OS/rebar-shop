@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="portal.Composer" t-inherit-mode="extension">
+        <xpath expr="//textarea" position="attributes"><attribute name="t-att-id">widget.options['res_model'] == 'crm.lead' ? 'taggingTextarea' : ''</attribute></xpath>
+        <xpath expr="//textarea" position="before">
+            <div t-if="widget.options['res_model'] == 'crm.lead'" id="tag-dropdown" class="tag-dropdown bg-primary hidden"></div>
+            <input t-if="widget.options['res_model'] == 'crm.lead'" id="partner_ids_to_add" name="partner_ids_to_add" type="hidden"/>
+        </xpath>
+    </t>
+</templates>

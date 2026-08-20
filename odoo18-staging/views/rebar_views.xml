@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Product Form View -->
+    <record id="view_rebar_product_form" model="ir.ui.view">
+        <field name="name">rebar.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Rebar Specifications" groups="rebar_shop_staging.group_rebar_shop_user">
+                    <group>
+                        <group string="Physical Properties">
+                            <field name="steel_grade"/>
+                            <field name="diameter"/>
+                            <field name="length"/>
+                            <field name="weight_per_meter"/>
+                            <field name="surface_type"/>
+                            <field name="coating"/>
+                        </group>
+                        <group string="Mechanical Properties">
+                            <field name="tensile_strength"/>
+                            <field name="yield_strength"/>
+                            <field name="certification"/>
+                        </group>
+                    </group>
+                    <group string="Safety Information">
+                        <field name="is_hazardous"/>
+                        <field name="safety_notes" widget="text"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Product Tree View -->
+    <record id="view_rebar_product_tree" model="ir.ui.view">
+        <field name="name">rebar.product.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field name="steel_grade" optional="show"/>
+                <field name="diameter" optional="show"/>
+                <field name="length" optional="show"/>
+                <field name="is_hazardous" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Product Search View -->
+    <record id="view_rebar_product_search" model="ir.ui.view">
+        <field name="name">rebar.product.search</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="steel_grade"/>
+                <field name="diameter"/>
+                <field name="surface_type"/>
+                <field name="coating"/>
+                <separator/>
+                <filter string="Hazardous Materials" name="hazardous" domain="[('is_hazardous', '=', True)]"/>
+                <filter string="Grade 60" name="grade_60" domain="[('steel_grade', '=', 'grade_60')]"/>
+                <filter string="Deformed" name="deformed" domain="[('surface_type', '=', 'deformed')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Steel Grade" name="group_steel_grade" context="{'group_by': 'steel_grade'}"/>
+                    <filter string="Surface Type" name="group_surface_type" context="{'group_by': 'surface_type'}"/>
+                    <filter string="Coating" name="group_coating" context="{'group_by': 'coating'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Category Form View -->
+    <record id="view_rebar_category_form" model="ir.ui.view">
+        <field name="name">rebar.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="category_type"/>
+                <field name="requires_certification"/>
+                <field name="safety_level"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Actions -->
+    <record id="action_rebar_products" model="ir.actions.act_window">
+        <field name="name">Rebar Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('sale_ok', '=', True)]</field>
+        <field name="context">{'default_sale_ok': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first rebar product!
+            </p>
+            <p>
+                Define products with detailed specifications including steel grade,
+                dimensions, and safety information.
+            </p>
+        </field>
+    </record>
+    
+    <record id="action_rebar_categories" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first product category!
+            </p>
+            <p>
+                Organize your products into categories with specific safety
+                and certification requirements.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Menu Items -->
+    <menuitem id="menu_rebar_shop_root" 
+              name="Rebar Shop" 
+              sequence="10"
+              groups="group_rebar_shop_user"/>
+    
+    <menuitem id="menu_rebar_products" 
+              name="Products" 
+              parent="menu_rebar_shop_root"
+              action="action_rebar_products"
+              sequence="10"/>
+    
+    <menuitem id="menu_rebar_categories" 
+              name="Categories" 
+              parent="menu_rebar_shop_root"
+              action="action_rebar_categories"
+              sequence="20"/>
+    
+</odoo>

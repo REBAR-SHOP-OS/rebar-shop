@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="ringcentral.miss_calllog">
+        <t t-if="props.record_length">
+            <ul class="list-group mt-3">
+                <t t-foreach="props.all_calls" t-as="call" t-key="call_index">
+                    <t t-if="call[&quot;direction&quot;] == &quot;Outbound&quot;">
+                        <t t-if="call[&quot;to&quot;]">
+                            <li
+                                class="list-group-item"
+                                style="color:#C80413;"
+                                t-if="call[&quot;result&quot;] == &quot;Missed&quot;"
+                            >
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img
+                                            height="24"
+                                            width="24"
+                                            src="/ringcentral/static/src/img/missed_call.png"
+                                        />
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <!-- <t t-if='call["to"]["name"]'
+                                        t-esc='call["to"]["name"]'/> -->
+                                        <!-- <t
+                                            t-if="widget.get_partner_name(call['to']['phoneNumber'])"
+                                            t-esc="widget.get_partner_name(call['to']['phoneNumber'])"
+                                        /> -->
+                                        <div
+                                            style="cursor: pointer !important;"
+                                            t-on-click="(e) => props.onClickDial(e)"
+                                            class="dial_call_contact_detail"
+                                            t-att-data-phone_number="call[&quot;to&quot;][&quot;phoneNumber&quot;]"
+                                        >
+                                            <t
+                                                t-esc="call[&quot;to&quot;][&quot;phoneNumber&quot;]"
+                                            />
+                                        </div>
+                                        <t
+                                            t-if="call[&quot;to&quot;][&quot;location&quot;]"
+                                        >
+                                            <div style="font-size: 10px;">
+                                                <t
+                                                    t-esc="call[&quot;to&quot;][&quot;location&quot;]"
+                                                />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </li>
+                        </t>
+                    </t>
+                    <t t-if="call[&quot;direction&quot;] == &quot;Inbound&quot;">
+                        <t t-if="call[&quot;from&quot;]">
+                            <li
+                                class="list-group-item"
+                                style="color:#C80413;"
+                                t-if="call[&quot;result&quot;] == &quot;Missed&quot;"
+                            >
+                                <div class="d-flex align-items-center">
+                                    <div class="col-3">
+                                        <img
+                                            height="24"
+                                            width="24"
+                                            src="/ringcentral/static/src/img/missed_call.png"
+                                        />
+                                    </div>
+                                    <div class="col-9">
+                                        <!-- <t t-if='call["from"]["name"]'
+                                        t-esc='call["from"]["name"]'/> -->
+                                        <!-- <t
+                                            t-if="widget.get_partner_name(call['from']['phoneNumber'])"
+                                            t-esc="widget.get_partner_name(call['from']['phoneNumber'])"
+                                        /> -->
+                                        <div
+                                            style="cursor: pointer !important;"
+                                            t-on-click="(ev) => this.onClickDial(ev,call)"
+                                            class="dial_call_contact_detail"
+                                            t-att-data-phone_number="call[&quot;from&quot;][&quot;phoneNumber&quot;]"
+                                        >
+                                            <t
+                                                t-if="call[&quot;from&quot;][&quot;name&quot;]"
+                                                t-esc="call[&quot;from&quot;][&quot;name&quot;]"
+                                            />
+                                            <div>
+                                            <t
+                                                t-if="call[&quot;from&quot;][&quot;phoneNumber&quot;]"
+                                                t-esc="call[&quot;from&quot;][&quot;phoneNumber&quot;]"
+                                            />
+
+                                            </div>
+                                        </div>
+                                        <t
+                                            t-if="call[&quot;from&quot;][&quot;location&quot;]"
+                                        >
+                                            <div style="font-size: 10px;">
+                                                <t
+                                                    t-esc="call[&quot;from&quot;][&quot;location&quot;]"
+                                                />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </li>
+                        </t>
+                    </t>
+                </t>
+            </ul>
+        </t>
+        <t t-if="!props.record_length">
+            <div class="no_records">
+                <span>No Records Found !!!</span>
+            </div>
+        </t>
+    </t>
+
+</templates>
