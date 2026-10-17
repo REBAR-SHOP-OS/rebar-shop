@@ -68,11 +68,13 @@ class QuickBooksController(http.Controller):
             IrConfigParameter = request.env['ir.config_parameter'].sudo()
             if IrConfigParameter.get_param('odoo_quickbook.webhook_check'):
                 if 'HTTP_INTUIT_SIGNATURE' in request.httprequest.headers.environ:
-                    webhookkey = '8d1e83b4-83f3-4d4d-ab60-48afb3a4b9d9'
+                    webhookkey = IrConfigParameter.get_param('odoo_quickbook.quickbook_webhook_verifier_token')
+                    if not webhookkey:
+                        return Response(status=401)
                     hashed = hmac.new(bytes(webhookkey, 'utf8'), request.httprequest.data, hashlib.sha256)
                     generated_signature = base64.b64encode(hashed.digest()).decode('utf-8')
                     provided_signature = request.httprequest.headers.environ['HTTP_INTUIT_SIGNATURE']
-                    if provided_signature == generated_signature:
+                    if hmac.compare_digest(provided_signature, generated_signature):
                         # events[0]['dataChangeEvent']['entities'][0]['name']
                         events = request.jsonrequest['eventNotifications']
                         for full_event_list in events:

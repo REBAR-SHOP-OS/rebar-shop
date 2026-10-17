@@ -113,6 +113,13 @@
                                     <attribute name="required">True</attribute>
                                 </field>
                             </div>
+
+                            <div>
+                                <span class="o_form_label">Webhook Verifier Token</span>
+                            </div>
+                            <div>
+                                <field name="quickbook_webhook_verifier_token" position="attributes" password="True"/>
+                            </div>
                         </setting>
                         <div class="col-lg-6 col-6 mt-16">
                             <button name="authorization" string="Build Connection" type="object" class="oe_highlight"/>
