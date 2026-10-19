@@ -491,6 +491,8 @@ class QuickbookSetting(models.TransientModel):
     quickbook_client_id = fields.Char('Client ID', required=True, config_parameter="odoo_quickbook.quickbook_client_id")
     quickbook_secret_key = fields.Char('Client Secret', required=True,
                                        config_parameter="odoo_quickbook.quickbook_secret_key")
+    quickbook_webhook_verifier_token = fields.Char('Webhook Verifier Token',
+                                                   config_parameter="odoo_quickbook.quickbook_webhook_verifier_token")
     login_url = fields.Char('Login URL', compute='_compute_url', readonly=True)
     bill_check = fields.Boolean("Bill", config_parameter="odoo_quickbook.bill_check")
     sale_order_check = fields.Boolean("Sale Order", config_parameter="odoo_quickbook.sale_order_check")

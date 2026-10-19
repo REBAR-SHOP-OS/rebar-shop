@@ -62,19 +62,21 @@ class QuickBooksController(http.Controller):
         except Exception as e:
             raise ValidationError(_(str(e)))
 
-    @http.route('/quickbook', auth='public', type='json')
+    @http.route('/quickbook', auth='public', type='http', csrf=False, methods=['POST'])
     def eventchecker(self, **kw):
         try:
             IrConfigParameter = request.env['ir.config_parameter'].sudo()
             if IrConfigParameter.get_param('odoo_quickbook.webhook_check'):
                 if 'HTTP_INTUIT_SIGNATURE' in request.httprequest.headers.environ:
-                    webhookkey = '8d1e83b4-83f3-4d4d-ab60-48afb3a4b9d9'
+                    webhookkey = IrConfigParameter.get_param('odoo_quickbook.quickbook_webhook_verifier_token')
+                    if not webhookkey:
+                        return Response(status=401)
                     hashed = hmac.new(bytes(webhookkey, 'utf8'), request.httprequest.data, hashlib.sha256)
                     generated_signature = base64.b64encode(hashed.digest()).decode('utf-8')
                     provided_signature = request.httprequest.headers.environ['HTTP_INTUIT_SIGNATURE']
-                    if provided_signature == generated_signature:
+                    if hmac.compare_digest(provided_signature, generated_signature):
                         # events[0]['dataChangeEvent']['entities'][0]['name']
-                        events = request.jsonrequest['eventNotifications']
+                        events = json.loads(request.httprequest.data.decode('utf-8'))['eventNotifications']
                         for full_event_list in events:
                             for event in full_event_list['dataChangeEvent']['entities']:
                                 if event['name'] == 'Invoice':
@@ -138,7 +140,7 @@ class QuickBooksController(http.Controller):
                     else:
                         return Response(status=401)
                 else:
-                    pass
+                    return Response(status=200)
             else:
                 return Response(status=200)
         except Exception as e:
